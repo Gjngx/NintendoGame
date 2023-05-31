@@ -19,5 +19,5 @@ public class ThanhToan {
     @Column(name = "ngaythanhtoan", nullable = false)
     private Date ngaythanhtoan;
     @OneToOne(mappedBy = "thanhToan", cascade = CascadeType.ALL)
-    private List<HoaDon> hoaDons;
+    private HoaDon hoaDon;
 }

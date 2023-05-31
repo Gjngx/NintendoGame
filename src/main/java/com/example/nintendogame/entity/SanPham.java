@@ -39,10 +39,10 @@ public class SanPham {
     @JoinColumn(name = "trangthai_id")
     private TrangThai trangThai;
     @ManyToOne
-    @JoinColumn(name = "nsx_id")
-    private NhaSanXuat nsx;
-    @OneToMany(mappedBy = "SanPham", cascade = CascadeType.ALL)
+    @JoinColumn(name = "nhasanxuat_id")
+    private NhaSanXuat nhaSanXuat;
+    @OneToMany(mappedBy = "sanPham", cascade = CascadeType.ALL)
     private List<ChiTietHoaDon> chiTietHoaDons;
-    @OneToMany(mappedBy = "SanPham", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "sanPham", cascade = CascadeType.ALL)
     private List<ChiTietGioHang> chiTietGioHangs;
 }
