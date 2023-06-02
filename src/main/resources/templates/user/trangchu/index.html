@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Nintendo Shop</title>
+    <link rel="shortcut icon" href="/img/dragon.svg" type="image/svg"/>
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,500;1,300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,500;0,700;1,200;1,500;1,700&display=swap" rel="stylesheet">
     <link th:replace="~{layout :: link-css}">
-
 </head>
 <body>
 <div th:replace="~{layout :: spinner}"> </div>
@@ -43,7 +43,7 @@
                 <div class="site-animation">
                     <h2 style="display: flex; " class="wow fadeInUp" data-wow-delay="0.3s">
                         <hr style="border: 1px solid #ff860d; flex-grow: 1;">
-                        <a href="#" style="margin: 0 30px; padding: 0 5px; font-size: 30px;">
+                        <a href="/sanpham" style="margin: 0 30px; padding: 0 5px; font-size: 30px;">
                             Sản phẩm mới
                         </a>
                         <hr style="border: 1px solid #ff860d; flex-grow: 1;">
@@ -51,100 +51,22 @@
                 </div>
             </div>
             <div class="row g-4">
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div th:each="sanpham : ${sanPhams}"  class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="d-flex py-5 px-4">
-                        <img style="width: 200px; height: 200px;" src="./img/the-legend-of-zelda-tears-of-the-kingdom---nintendo-switch-P1659-1681858317689.jpeg" alt="Anh san pham">
+                        <img style="width: 200px; height: 200px;" th:src="'./img/'+${sanpham.hinhanh}" th:alt="${sanpham.sanpham}">
                         <div class="ps-4">
-                            <h6 class="mb-3">One Piece Enel Chúa Trời trạng thái chiến đấu</h6>
-                            <p>Giá: 1,100,000₫</p>
-                            <a class="text-secondary border-bottom" href="">Xem thêm</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="d-flex py-5 px-4">
-                        <img style="width: 200px; height: 200px;" src="./img/the-legend-of-zelda-tears-of-the-kingdom---nintendo-switch-P1659-1681858317689.jpeg" alt="Anh san pham">
-                        <div class="ps-4">
-                            <h6 class="mb-3">Luffy và các bại tướng</h6>
-                            <p>Giá: 1,100,000₫</p>
-                            <a class="text-secondary border-bottom" href="">Xem thêm</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="d-flex py-5 px-4">
-                        <img style="width: 200px; height: 200px;" src="./img/the-legend-of-zelda-tears-of-the-kingdom---nintendo-switch-P1659-1681858317689.jpeg" alt="Anh san pham">
-                        <div class="ps-4">
-                            <h6 class="mb-3">One Piece Enel Chúa Trời trạng thái chiến đấu</h6>
-                            <p>Giá: 1,100,000₫</p>
-                            <a class="text-secondary border-bottom" href="">Xem thêm</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="d-flex py-5 px-4">
-                        <img style="width: 200px; height: 200px;" src="./img/the-legend-of-zelda-tears-of-the-kingdom---nintendo-switch-P1659-1681858317689.jpeg" alt="Anh san pham">
-                        <div class="ps-4">
-                            <h6 class="mb-3">One Piece Enel Chúa Trời trạng thái chiến đấu</h6>
-                            <p>Giá: 1,100,000₫</p>
-                            <a class="text-secondary border-bottom" href="">Xem thêm</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="d-flex py-5 px-4">
-                        <img style="width: 200px; height: 200px;" src="./img/the-legend-of-zelda-tears-of-the-kingdom---nintendo-switch-P1659-1681858317689.jpeg" alt="Anh san pham">
-                        <div class="ps-4">
-                            <h6 class="mb-3">Luffy và các bại tướng</h6>
-                            <p>Giá: 1,100,000₫</p>
-                            <a class="text-secondary border-bottom" href="">Xem thêm</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="d-flex py-5 px-4">
-                        <img style="width: 200px; height: 200px;" src="./img/the-legend-of-zelda-tears-of-the-kingdom---nintendo-switch-P1659-1681858317689.jpeg" alt="Anh san pham">
-                        <div class="ps-4">
-                            <h6 class="mb-3">One Piece Enel Chúa Trời trạng thái chiến đấu</h6>
-                            <p>Giá: 1,100,000₫</p>
-                            <a class="text-secondary border-bottom" href="">Xem thêm</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="d-flex py-5 px-4">
-                        <img style="width: 200px; height: 200px;" src="./img/the-legend-of-zelda-tears-of-the-kingdom---nintendo-switch-P1659-1681858317689.jpeg" alt="Anh san pham">
-                        <div class="ps-4">
-                            <h6 class="mb-3">One Piece Enel Chúa Trời trạng thái chiến đấu</h6>
-                            <p>Giá: 1,100,000₫</p>
-                            <a class="text-secondary border-bottom" href="">Xem thêm</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="d-flex py-5 px-4">
-                        <img style="width: 200px; height: 200px;" src="./img/the-legend-of-zelda-tears-of-the-kingdom---nintendo-switch-P1659-1681858317689.jpeg" alt="Anh san pham">
-                        <div class="ps-4">
-                            <h6 class="mb-3">Luffy và các bại tướng</h6>
-                            <p>Giá: 1,100,000₫</p>
-                            <a class="text-secondary border-bottom" href="">Xem thêm</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="d-flex py-5 px-4">
-                        <img style="width: 200px; height: 200px;" src="./img/the-legend-of-zelda-tears-of-the-kingdom---nintendo-switch-P1659-1681858317689.jpeg" alt="Anh san pham">
-                        <div class="ps-4">
-                            <h6 class="mb-3">One Piece Enel Chúa Trời trạng thái chiến đấu</h6>
-                            <p>Giá: 1,100,000₫</p>
-                            <a class="text-secondary border-bottom" href="">Xem thêm</a>
+                            <h6 class="mb-3" th:text="${sanpham.sanpham}"></h6>
+                            <p class="proloop--price" style="ont-weight: 600; font-size: 14px; color: #e11b1e;">
+                                <span class="price" th:text="${sanpham.gia}+'₫'"></span>
+                            </p>
+                            <a class="text-secondary border-bottom" href="#">Xem thêm</a>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="text-center wow fadeInUp" data-wow-delay="0.3s">
-                    <a style="color: #0066FF;" href="/collections/san-pham-jh-figure">
+                    <a style="color: #0066FF;" href="/sanpham">
                         Xem thêm sản phẩm
                     </a>
                 </div>
@@ -153,7 +75,7 @@
     </div>
 </div>
 <th:block th:replace="~{layout::footer}"></th:block>
-<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa-sharp fa-solid fa-circle-up"></i></a>
+<a href="/" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa-sharp fa-solid fa-circle-up"></i></a>
 <!-- JavaScript Libraries -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
