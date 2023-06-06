@@ -11,18 +11,23 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.List;
-
 @Controller
-@RequestMapping("/")
-public class TrangChuController {
+@RequestMapping("/sanpham")
+public class SanPhamController {
     @Autowired
     private SanPhamService sanPhamService;
-    @GetMapping
-    public String home (Model model){
-        List<SanPham> sanPhams = sanPhamService.getLatestProducts(12);
-        model.addAttribute("sanPhams", sanPhams);
-        return "user/trangchu/index";
+    @GetMapping("/updatedesc")
+    public String getSortedAndPagedSanPhams(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "1") int size,
+            Model model) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<SanPham> sanPhamsPage = sanPhamService.getSortedAndPagedSanPhams(pageable);
+        model.addAttribute("sanPhams", sanPhamsPage);
+        return "user/sanpham/index";
+    }
+    @GetMapping("/test")
+    public String test(){
+        return "user/sanpham/detail";
     }
 }
