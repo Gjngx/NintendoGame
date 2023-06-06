@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Nintendo Shop</title>
-    <link rel="shortcut icon" href="/img/dragon.svg" type="image/svg"/>
+    <link rel="shortcut icon" href="/img/dragon.svg" type="image/svg" style="color:red"/>
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,7 +20,7 @@
         <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <a href="#"><img class="w-100" src="img/collection_banner.jpg" alt="Image"></a>
+                    <a href="#"><img class="w-100" src="/img/collection_banner.jpg" alt="Image"></a>
                 </div>
             </div>
         </div>
@@ -63,7 +63,7 @@
             <div class="row g-4">
                 <div th:each="sanpham : ${sanPhams}" class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="d-flex py-5 px-4">
-                        <img style="width: 200px; height: 200px;" th:src="'./img/'+${sanpham.hinhanh}" th:alt="${sanpham.sanpham}">
+                        <img style="width: 200px; height: 200px;" th:src="'/img/'+${sanpham.hinhanh}" th:alt="${sanpham.sanpham}">
                         <div class="ps-4">
                             <h6 class="mb-3" th:text="${sanpham.sanpham}"></h6>
                             <p class="proloop--price" style="ont-weight: 600; font-size: 14px; color: #e11b1e;">
@@ -78,14 +78,14 @@
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center">
                     <li th:class="${sanPhams.first} ? 'disabled' : ''">
-                        <a class="page-link" th:href="@{/sanpham(page=${sanPhams.number - 1})}">Previous</a>
+                        <a class="page-link" th:href="@{/sanpham/updatedesc(page=${sanPhams.number - 1})}">Previous</a>
                     </li>
                     <li th:each="i : ${#numbers.sequence(0, sanPhams.totalPages - 1)}"
                         th:class="${sanPhams.number == i} ? 'active' : ''">
-                        <a class="page-link" th:href="@{/sanpham(page=${i})}" th:text="${i + 1}"></a>
+                        <a class="page-link" th:href="@{/sanpham/updatedesc(page=${i})}" th:text="${i + 1}"></a>
                     </li>
                     <li th:class="${sanPhams.last} ? 'disabled' : ''">
-                        <a class="page-link" th:href="@{/sanpham(page=${sanPhams.number + 1})}">Next</a>
+                        <a class="page-link" th:href="@{/sanpham/updatedesc(page=${sanPhams.number + 1})}">Next</a>
                     </li>
                 </ul>
             </nav>
