@@ -59,7 +59,7 @@
                             <p class="proloop--price" style="ont-weight: 600; font-size: 14px; color: #e11b1e;">
                                 <span class="price" th:text="${sanpham.gia}+'₫'"></span>
                             </p>
-                            <a class="text-secondary border-bottom" href="#">Xem thêm</a>
+                            <a class="text-secondary border-bottom" th:href="@{/sanpham/{id}(id=${sanpham.id})}">Xem thêm</a>
                         </div>
                     </div>
                 </div>

@@ -10,6 +10,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SanPhamService {
@@ -26,5 +27,8 @@ public class SanPhamService {
     public Page<SanPham> getSortedAndPagedSanPhams(Pageable pageable) {
         return sanPhamReponsitory.findAllByOrderByNgaydangsanphamDesc(pageable);
     }
-
+    public SanPham getSanPhamById(Long id){
+        Optional<SanPham> optional = sanPhamReponsitory.findById(id);
+        return optional.orElse(null);
+    }
 }

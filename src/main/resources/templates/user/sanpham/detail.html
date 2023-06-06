@@ -28,42 +28,45 @@
         padding: 10px 15px;
         overflow: hidden;
     }
-
+    .imgchil img{
+      max-width:15%;
+      margin-left:30px;
+    }
 </style>
-
 <body>
 <div th:replace="~{layout :: spinner}"> </div>
 <nav th:replace="~{layout :: header}"> </nav>
-<div class="root">
-  <div class="left">
-    <img src="./image/ngame.jpeg" alt="" style="max-width: 100%;">
-    <div class="imgchil">
-      <img src="./img/ngame.jpeg" alt="" style="max-width: 15%; margin-left: 30px;">
-      <img src="./img/zelda1.png" alt="" style="max-width: 15%; margin-left: 30px;">
-      <img src="./img/zelda2.png" alt="" style="max-width: 15%; margin-left: 30px;">
-      <img src="./img/zelda3.png" alt="" style="max-width: 15%; margin-left: 30px;">
+  <div class="root">
+    <div class="left">
+      <img src="/img/ngame.jpeg" alt="" style="max-width: 100%;">
+      <div class="imgchil">
+        <img src="/img/ngame.jpeg" alt="">
+        <img src="/img/zelda1.png" alt="">
+        <img src="/img/zelda2.png" alt="">
+        <img src="/img/zelda3.png" alt="">
+      </div>
+    </div>
+    <div class="right">
+        <span style="font-size: 50px;" th:text="${sanpham.sanpham}"></span>
+        <h2 style="color: red;" th:text="${sanpham.gia}"></h2>
+        <div class="btn">
+          <input type="button" value="-" style="height: 50px; width: 50px;">
+          <input type="text" value="1"style="height: 50px; width: 50px; text-align:center;">
+          <input type="button" value="+" style="height: 50px; width: 50px;">
+          <input type="submit" value="Thêm vào giỏ hàng" style="width:250px; height: 50px;">
+          <input type="submit" value="Mua ngay" style="width: 250px; height: 50px;">
+        </div>
+        <ul>
+          <li>Thể loại:</li>
+          <li>Nhà sản xuất:</li>
+          <li>Tình trạng: còn hàng</li>
+        </ul>
+        <div class="content">
+          <h2>Mô tả</h2>
+          <p th:text="${sanpham.mota}"></p>
+        </div>
     </div>
   </div>
-  <div class="right">
-    <span style="font-size: 50px;">Thẻ nintendo game zelda nhà có ma lalala</span>
-    <h2 style="color: red;">990.000đ</h2>
-    <div class="btn">
-      <input type="button" value="<" style="height: 50px; width: 50px;">
-      <input type="button" value=">" style="height: 50px; width: 50px;">
-      <input type="submit" value="Thêm vào giỏ hàng" style="width:250px; height: 50px;">
-      <input type="submit" value="Mua ngay" style="width: 250px; height: 50px;">
-    </div>
-    <p>hàng chất lượng cao tag#1333</p>
-    <P> vận chuyển toàn quốc</P>
-    <p>cà thẻ miễn phí</p>
-    <p>Tình trạng: còn hàng</p>
-    <div class="content">
-      <h2>Mô tả</h2>
-      <p>👌 Mua game Nintendo Switch giá rẻ hơn, tiết kiệm chi phí hơn với chương trình "Bán đĩa game cũ đổi đĩa game mới" tại nShop. Chi tiết chương trình click vào:
-        Chrono Cross The Radical Dreamers Edition cho Nintendo Switch bán tại nShop là bản nâng cấp (remastered) của Chrono Cross. Đây không chỉ là thời điểm để những người chơi lâu năm ôn lại kỷ niệm cũ, mà còn là cơ hội để người mới trải nghiệm một trong những tựa game nhập vai kinh điển được đánh giá cao. Game được cải tiến thêm nhiều tính năng mới, và có luôn cả visual novel "Radical Dreamers - Le Trésor Interdit-".</p>
-    </div>
-  </div>
-</div>
 <th:block th:replace="~{layout::footer}"></th:block>
 <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa-sharp fa-solid fa-circle-up"></i></a>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

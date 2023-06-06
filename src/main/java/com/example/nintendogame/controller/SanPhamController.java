@@ -1,21 +1,24 @@
 package com.example.nintendogame.controller;
 
 import com.example.nintendogame.entity.SanPham;
+import com.example.nintendogame.entity.TheLoai;
 import com.example.nintendogame.service.SanPhamService;
+import com.example.nintendogame.service.TheLoaiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
 @Controller
 @RequestMapping("/sanpham")
 public class SanPhamController {
     @Autowired
     private SanPhamService sanPhamService;
+    @Autowired
+    private TheLoaiService theLoaiService;
     @GetMapping("/updatedesc")
     public String getSortedAndPagedSanPhams(
             @RequestParam(defaultValue = "0") int page,
@@ -26,8 +29,10 @@ public class SanPhamController {
         model.addAttribute("sanPhams", sanPhamsPage);
         return "user/sanpham/index";
     }
-    @GetMapping("/test")
-    public String test(){
+    @GetMapping("/{id}")
+    public String detailSanphams(@PathVariable("id") Long id, Model model){
+        SanPham sanPham = sanPhamService.getSanPhamById(id);
+        model.addAttribute("sanpham", sanPham);
         return "user/sanpham/detail";
     }
 }
