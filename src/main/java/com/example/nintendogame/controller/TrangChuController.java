@@ -25,14 +25,4 @@ public class TrangChuController {
         model.addAttribute("sanPhams", sanPhams);
         return "user/trangchu/index";
     }
-    @GetMapping("/sanpham")
-    public String getSortedAndPagedSanPhams(
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "1") int size,
-            Model model) {
-        Pageable pageable = PageRequest.of(page, size);
-        Page<SanPham> sanPhamsPage = sanPhamService.getSortedAndPagedSanPhams(pageable);
-        model.addAttribute("sanPhams", sanPhamsPage);
-        return "user/sanpham/index";
-    }
 }
