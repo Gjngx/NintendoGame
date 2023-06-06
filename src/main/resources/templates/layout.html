@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -11,7 +14,6 @@
     <link th:fragment="link-css" th:href="@{/lib/animate/animate.min.css}" rel="stylesheet">
     <link th:fragment="link-css" th:href="@{/lib/owlcarousel/assets/owl.carousel.min.css}" rel="stylesheet">
     <link th:fragment="link-css" th:href="@{/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css}" rel="stylesheet" />
-
     <link th:fragment="link-css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
     <link th:fragment="link-css" th:href="@{/css/style.css}" rel="stylesheet">
 
@@ -57,8 +59,15 @@
       </div>
       <a href="contact.html" class="nav-item nav-link"><i class="fa-sharp fa-solid fa-cart-shopping"></i> Giỏ hàng</a>
     </div>
-    <a href="" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Đăng nhập<i
-            class="fa fa-arrow-right ms-3"></i></a>
+    <li sec:authorize="isAuthenticated()">
+      <form th:action = "@{/logout}" method="post">
+        <button class="btn btn-outline-danger" type="submit">Logout</button>
+      </form>
+    </li>
+    <li sec:authorize="!isAuthenticated()">
+      <a href="/login" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Đăng nhập<i
+              class="fa fa-arrow-right ms-3"></i></a>
+    </li>
   </div>
 </nav>
 <!-- Navbar End -->

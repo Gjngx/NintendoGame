@@ -77,15 +77,19 @@
 
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center">
-                    <li th:class="${sanPhams.first} ? 'disabled' : ''">
+                    <li th:if="${sanPhams.number != 0}">
                         <a class="page-link" th:href="@{/sanpham/updatedesc(page=${sanPhams.number - 1})}">Previous</a>
+                    </li>
+                    <li th:unless="${sanPhams.number == 0}">
                     </li>
                     <li th:each="i : ${#numbers.sequence(0, sanPhams.totalPages - 1)}"
                         th:class="${sanPhams.number == i} ? 'active' : ''">
                         <a class="page-link" th:href="@{/sanpham/updatedesc(page=${i})}" th:text="${i + 1}"></a>
                     </li>
-                    <li th:class="${sanPhams.last} ? 'disabled' : ''">
+                    <li th:if="${currentPage < sanPhams.totalPages - 1}">
                         <a class="page-link" th:href="@{/sanpham/updatedesc(page=${sanPhams.number + 1})}">Next</a>
+                    </li>
+                    <li th:unless="${currentPage == sanPhams.totalPages - 1}">
                     </li>
                 </ul>
             </nav>
