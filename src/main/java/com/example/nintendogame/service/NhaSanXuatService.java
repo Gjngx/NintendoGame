@@ -13,4 +13,9 @@ public class NhaSanXuatService {
     public List<NhaSanXuat>GetAllNhaSanXuatAdmin(){
         return nhaSanXuatReponsity.findAll();
     }
+    public void addnhasanxuat(NhaSanXuat nhaSanXuat){
+        nhaSanXuatReponsity.save(nhaSanXuat);
+    }
+
+
 }

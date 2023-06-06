@@ -39,8 +39,10 @@
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
                     <h1 class="h3 mb-0 text-gray-800">Nhà sản xuất</h1>
+                    <a class="btn btn-primary" th:href="@{nhasanxuats/add}">Add</a>
                 </div>
                 <!-- Content Row -->
+
                 <div class="row">
                     <table class="table">
                         <tr>
@@ -52,8 +54,9 @@
                             <td th:text="${nhasanxuat.id}"></td>
                             <td th:text="${nhasanxuat.nsx}"></td>
                             <td>
+
                                 <a class="btn btn-primary" th:href="@{#}">Edit</a>
-                                <a class="btn btn-dark" th:href="@{#}"
+                                <a class="btn btn-danger" th:href="@{#}"
                                    onclick="return confirm('Are you sure?')">Delete</a>
                             </td>
                         </tr>
