@@ -27,13 +27,8 @@ public class SanPhamService {
     public Page<SanPham> getSortedAndPagedSanPhams(Pageable pageable) {
         return sanPhamReponsitory.findAllByOrderByNgaydangsanphamDesc(pageable);
     }
-<<<<<<< HEAD
     public SanPham getSanPhamById(Long id){
         Optional<SanPham> optional = sanPhamReponsitory.findById(id);
         return optional.orElse(null);
     }
-=======
-
-
->>>>>>> 13e1dba9ebba53e1c57f970ab42b0cf69b3cc0fa
 }
