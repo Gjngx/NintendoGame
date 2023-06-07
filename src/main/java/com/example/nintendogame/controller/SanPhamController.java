@@ -12,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/sanpham")
 public class SanPhamController {
@@ -32,7 +34,15 @@ public class SanPhamController {
     @GetMapping("/{id}")
     public String detailSanphams(@PathVariable("id") Long id, Model model){
         SanPham sanPham = sanPhamService.getSanPhamById(id);
+        List<SanPham> sanPhams = sanPhamService.getLatestProducts(3);
+        model.addAttribute("sanphams", sanPhams);
         model.addAttribute("sanpham", sanPham);
+        return "user/sanpham/detail";
+    }
+    @GetMapping
+    public String showAllSanpham(Model model){
+        List<SanPham> sanPhams = sanPhamService.getAllSanPhams();
+        model.addAttribute("sanPham", sanPhams);
         return "user/sanpham/detail";
     }
 }
