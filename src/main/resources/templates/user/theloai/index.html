@@ -42,7 +42,7 @@
                     Thể loại
                   </a>
                   <ul class="dropdown-menu">
-                    <li th:each="theLoai : ${theLoais}"><a class="dropdown-item" href="#" th:text="${theLoai.theloai}"></a></li>
+                    <li th:each="theLoai : ${theLoais}"><a class="dropdown-item" th:href="@{/theloai/{id}/sanphams(id=${theLoai.id})}" th:text="${theLoai.theloai}"></a></li>
                   </ul>
                 </div>
                 <div class="dropdown" style="padding: 1%">
@@ -72,7 +72,6 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
   <!-- Service End -->

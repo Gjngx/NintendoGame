@@ -31,14 +31,15 @@ public class TheLoaiController {
 
     @GetMapping("/{id}/sanphams")
     public String getProductsByCategory(
-            @PathVariable Long categoryId,
+            @PathVariable("id") Long theLoaiId,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "18") int size,
             Model model) {
         Pageable pageable = PageRequest.of(page, size);
         model.addAttribute("theLoais", theLoaiReponsitory.findAll());
         model.addAttribute("nhaSanXuats", nhaSanXuatReponsity.findAll());
-        Page<SanPham> sanPhamsPage = sanPhamService.getSanPhamsByTheLoai(categoryId, page, size);
+        Page<SanPham> sanPhamsPage = sanPhamService.getSanPhamsByTheLoai(theLoaiId, pageable);
+        model.addAttribute("Id", theLoaiId);
         model.addAttribute("sanPhams", sanPhamsPage);
         return "user/theloai/index";
     }

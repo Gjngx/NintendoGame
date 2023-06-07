@@ -13,7 +13,6 @@ public class TheLoaiService {
     public TheLoai getTheLoaiById(Long id){
         return theLoaiReponsitory.findById(id).orElse(null);
     }
-
     public List<TheLoai> getAllTheLoais(){
         return theLoaiReponsitory.findAll();
     }

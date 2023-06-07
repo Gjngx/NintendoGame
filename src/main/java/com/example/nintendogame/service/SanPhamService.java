@@ -31,8 +31,10 @@ public class SanPhamService {
         Optional<SanPham> optional = sanPhamReponsitory.findById(id);
         return optional.orElse(null);
     }
-    public Page<SanPham> getSanPhamsByTheLoai(Long categoryId, int page, int pageSize) {
-        Pageable pageable = PageRequest.of(page - 1, pageSize);
-        return sanPhamReponsitory.findByTheLoaiId(categoryId, pageable);
+    public Page<SanPham> getSanPhamsByTheLoai(Long theLoaiId, Pageable pageable) {
+        return sanPhamReponsitory.findByTheLoaiId(theLoaiId, pageable);
+    }
+    public Page<SanPham> getSanPhamsByNhaSanXuat(Long nhaSanXuatId, Pageable pageable) {
+        return sanPhamReponsitory.findByNhaSanXuatId(nhaSanXuatId, pageable);
     }
 }

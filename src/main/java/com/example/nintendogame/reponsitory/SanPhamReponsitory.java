@@ -6,8 +6,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface SanPhamReponsitory extends JpaRepository<SanPham, Long> {
     Page<SanPham> findAllByOrderByNgaydangsanphamDesc(Pageable pageable);
-    Page<SanPham> findByTheLoaiId(Long categoryId, Pageable pageable);
+    Page<SanPham> findByTheLoaiId(Long theLoaiId, Pageable pageable);
+    Page<SanPham> findByNhaSanXuatId(Long nhaSanXuatId, Pageable pageable);
 }
