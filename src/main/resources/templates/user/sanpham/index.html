@@ -50,7 +50,7 @@
                                         Nhà sản xuất
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li th:each="nhaSanXuat : ${nhaSanXuats}"><a class="dropdown-item" href="#" th:text="${nhaSanXuat.nsx}"></a></li>
+                                        <li th:each="nhaSanXuat : ${nhaSanXuats}"><a class="dropdown-item" th:href="@{/nhasanxuat/{id}/sanphams(id=${nhaSanXuat.id})}" th:text="${nhaSanXuat.nsx}"></a></li>
                                     </ul>
                                 </div>
                             </div>
