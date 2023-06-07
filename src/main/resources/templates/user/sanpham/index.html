@@ -44,14 +44,10 @@
                                 <span class="custom-dropdown custom-dropdown--grey">
                                     <select class="sort-by custom-dropdown__select">
                                         <option value="manual">Sản phẩm nổi bật</option>
-                                        <option value="price-ascending" data-filter="&sortby=(price:product=asc)">Giá: Tăng dần</option>
+                                        <option value="price-ascending">Giá: Tăng dần</option>
                                         <option value="price-descending" data-filter="&sortby=(price:product=desc)">Giá: Giảm dần</option>
-                                        <option value="title-ascending" data-filter="&sortby=(title:product=asc)">Tên: A-Z</option>
-                                        <option value="title-descending" data-filter="&sortby=(price:product=desc)">Tên: Z-A</option>
                                         <option value="created-ascending" data-filter="&sortby=(updated_at:product=desc)">Cũ nhất</option>
-                                        <option value="created-descending" data-filter="&sortby=(updated_at:product=asc)">Mới nhất</option>
-                                        <option value="best-selling" data-filter="&sortby=(sold_quantity:product=desc)">Bán chạy nhất</option>
-                                        <option value="quantity-descending" >Tồn kho: Giảm dần</option>
+                                        <option value="created-descending">Mới nhất</option>
                                     </select>
                                 </span>
                             </div>
@@ -65,11 +61,11 @@
                     <div class="d-flex py-5 px-4">
                         <img style="width: 200px; height: 200px;" th:src="'/img/'+${sanpham.hinhanh}" th:alt="${sanpham.sanpham}">
                         <div class="ps-4">
-                            <h6 class="mb-3" th:text="${sanpham.sanpham}"></h6>
+                            <h6 class="mb-3" th:text="'Tên game: '+${sanpham.sanpham}"></h6>
                             <p class="proloop--price" style="ont-weight: 600; font-size: 14px; color: #e11b1e;">
-                                <span class="price" th:text="${sanpham.gia}+'₫'"></span>
+                                <span class="price" th:text="'Giá: '+${sanpham.gia}+'₫'"></span>
                             </p>
-                            <a class="text-secondary border-bottom" href="#">Xem thêm</a>
+                            <a class="text-secondary border-bottom" th:href="@{/sanpham/{id}(id=${sanpham.id})}">Xem thêm</a>
                         </div>
                     </div>
                 </div>
@@ -93,8 +89,6 @@
                     </li>
                 </ul>
             </nav>
-
-
         </div>
     </div>
     <!-- Service End -->

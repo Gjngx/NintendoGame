@@ -47,8 +47,8 @@
       </div>
     </div>
     <div class="right">
-        <span style="font-size: 50px;" th:text="${sanpham.sanpham}"></span>
-        <h2 style="color: red;" th:text="${sanpham.gia}"></h2>
+        <span style="font-size: 50px;" th:text="'Tên game: '+${sanpham.sanpham}"></span>
+        <h2 style="color: red;" th:text="'Giá: '+${sanpham.gia}"></h2>
         <div class="btn">
           <input type="button" value="-" style="height: 50px; width: 50px;">
           <input type="text" value="1"style="height: 50px; width: 50px; text-align:center;">
@@ -57,9 +57,11 @@
           <input type="submit" value="Mua ngay" style="width: 250px; height: 50px;">
         </div>
         <ul>
-          <li>Thể loại:</li>
-          <li>Nhà sản xuất:</li>
-          <li>Tình trạng: còn hàng</li>
+
+            <li style="list-style-type:circle" th:text="'Thể loại: '+${sanpham.theLoai.theloai}"></li>
+            <li style="list-style-type:circle" th:text="'Nhà sản xuất: '+${sanpham.nhaSanXuat.nsx}"></li>
+            <li style="list-style-type:circle" th:if="${sanpham.soluong > 0}"> Tình trạng: còn hàng.</li>
+            <li style="list-style-type:circle" th:unless="${sanpham.soluong <= 0}"> Tình trạng: hết hàng.</li>
         </ul>
         <div class="content">
           <h2>Mô tả</h2>
