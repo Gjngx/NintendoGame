@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Nintendo Shop</title>
+  <link rel="shortcut icon" href="/img/dragon.svg" type="image/svg" style="color:red"/>
+  <!-- Google Web Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,500;0,700;1,200;1,500;1,700&display=swap" rel="stylesheet">
+  <link th:replace="~{layout :: link-css}">
+</head>
+<body>
+<div th:replace="~{layout :: spinner}"> </div>
+<nav th:replace="~{layout :: header}"> </nav>
+
+<div class="container">
+  <!-- Carousel Start -->
+  <div class="container-fluid p-0 mb-auto">
+    <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <a href="#"><img class="w-100" src="/img/collection_banner.jpg" alt="Image"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Carousel End -->
+
+  <div class="container-xxl py-5">
+    <div class="container">
+      <div class="container-fluid">
+        <div class="site-animation">
+          <div class="heading-collection row">
+            <div class="d-flex align-items-center justify-content-between">
+              <h2 style="font-size: 42px; font-weight: 700; margin: 0; color: #D81324;" class="title">
+                Sản phẩm
+              </h2>
+              <div class="d-flex">
+                <div class="dropdown" style="padding: 1%">
+                  <a class="btn btn-danger dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Thể loại
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li th:each="theLoai : ${theLoais}"><a class="dropdown-item" href="#" th:text="${theLoai.theloai}"></a></li>
+                  </ul>
+                </div>
+                <div class="dropdown" style="padding: 1%">
+                  <a class="btn btn-danger dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Nhà sản xuất
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li th:each="nhaSanXuat : ${nhaSanXuats}"><a class="dropdown-item" href="#" th:text="${nhaSanXuat.nsx}"></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row g-4">
+        <div th:each="sanpham : ${sanPhams}" class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+          <div class="d-flex py-5 px-4">
+            <img style="width: 200px; height: 200px;" th:src="'/img/'+${sanpham.hinhanh}" th:alt="${sanpham.sanpham}">
+            <div class="ps-4">
+              <h6 class="mb-3" th:text="'Tên game: '+${sanpham.sanpham}"></h6>
+              <p class="proloop--price" style="ont-weight: 600; font-size: 14px; color: #e11b1e;">
+                <span class="price" th:text="'Giá: '+${sanpham.gia}+'₫'"></span>
+              </p>
+              <a class="text-secondary border-bottom" th:href="@{/sanpham/{id}(id=${sanpham.id})}">Xem thêm</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!-- Service End -->
+
+</div>
+
+<th:block th:replace="~{layout::footer}"></th:block>
+<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa-sharp fa-solid fa-circle-up"></i></a>
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://kit.fontawesome.com/02c8afadd6.js" crossorigin="anonymous"></script>
+<script th:replace="~{layout::script}"></script>
+</body>
+</html>

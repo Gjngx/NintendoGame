@@ -32,30 +32,32 @@
             <div class="container-fluid">
                 <div class="site-animation">
                     <div class="heading-collection row">
-                        <div class="col-md-8 col-sm-12 col-xs-12">
+                        <div class="d-flex align-items-center justify-content-between">
                             <h2 style="font-size: 42px; font-weight: 700; margin: 0; color: #D81324;" class="title">
                                 Sản phẩm
                             </h2>
-                            <div class="alert-no-filter"></div>
-                        </div>
-                        <div class="col-md-4 hidden-sm hidden-xs" style="text-align: end; padding: 1%;">
-                            <div class="option browse-tags">
-                                <label class="lb-filter hide">Sắp xếp theo:</label>
-                                <span class="custom-dropdown custom-dropdown--grey">
-                                    <select class="sort-by custom-dropdown__select">
-                                        <option value="manual">Sản phẩm nổi bật</option>
-                                        <option value="price-ascending">Giá: Tăng dần</option>
-                                        <option value="price-descending" data-filter="&sortby=(price:product=desc)">Giá: Giảm dần</option>
-                                        <option value="created-ascending" data-filter="&sortby=(updated_at:product=desc)">Cũ nhất</option>
-                                        <option value="created-descending">Mới nhất</option>
-                                    </select>
-                                </span>
+                            <div class="d-flex">
+                                <div class="dropdown" style="padding: 1%">
+                                    <a class="btn btn-danger dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Thể loại
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li th:each="theLoai : ${theLoais}"><a class="dropdown-item" th:href="@{/theloai/{id}/sanphams(id=${theLoai.id})}" th:text="${theLoai.theloai}"></a></li>
+                                    </ul>
+                                </div>
+                                <div class="dropdown" style="padding: 1%">
+                                    <a class="btn btn-danger dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Nhà sản xuất
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li th:each="nhaSanXuat : ${nhaSanXuats}"><a class="dropdown-item" href="#" th:text="${nhaSanXuat.nsx}"></a></li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
             <div class="row g-4">
                 <div th:each="sanpham : ${sanPhams}" class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="d-flex py-5 px-4">
@@ -79,7 +81,7 @@
                     <li th:unless="${sanPhams.number == 0}">
                     </li>
                     <li th:each="i : ${#numbers.sequence(0, sanPhams.totalPages - 1)}"
-                        th:class="${sanPhams.number == i} ? 'active' : ''">
+                        th:class="${currentPage == i} ? 'active' : ''">
                         <a class="page-link" th:href="@{/sanpham/updatedesc(page=${i})}" th:text="${i + 1}"></a>
                     </li>
                     <li th:if="${currentPage < sanPhams.totalPages - 1}">

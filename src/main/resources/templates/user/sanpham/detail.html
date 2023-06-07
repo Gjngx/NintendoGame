@@ -37,8 +37,8 @@
       <img th:src="'/img/'+${sanpham.hinhanh}" th:alt="${sanpham.sanpham}" style="max-width: 100%; margin-top: 80px; margin-left:60px;">
     </div>
     <div class="right">
-        <span style="font-size: 50px;" th:text="'Tên game: '+${sanpham.sanpham}"></span>
-        <h2 style="color: red;" th:text="'Giá: '+${sanpham.gia}"></h2>
+        <h2 style="font-size: 50px;" th:text="'Tên game: '+${sanpham.sanpham}"></h2>
+        <h2 style="color: red;" th:text="'Giá: '+${sanpham.gia}+'₫'"></h2>
         <div class="btn">
           <input type="button" value="-" style="height: 50px; width: 50px;">
           <input type="text" value="1"style="height: 50px; width: 50px; text-align:center;">
@@ -47,11 +47,8 @@
           <input type="submit" value="Mua ngay" style="width: 250px; height: 50px;">
         </div>
         <ul>
-
             <li style="list-style-type:circle" th:text="'Thể loại: '+${sanpham.theLoai.theloai}"></li>
             <li style="list-style-type:circle" th:text="'Nhà sản xuất: '+${sanpham.nhaSanXuat.nsx}"></li>
-            <li style="list-style-type:circle" th:if="${sanpham.soluong > 0}"> Tình trạng: còn hàng.</li>
-            <li style="list-style-type:circle" th:unless="${sanpham.soluong <= 0}"> Tình trạng: hết hàng.</li>
         </ul>
         <div class="content">
           <h2>Mô tả</h2>
@@ -73,17 +70,17 @@
             </div>
         </div>
         <div class="row g-4">
-            <div th:each="sanpham : ${sanphams}" class="d-flex py-5 px-4">
-                <img style="width: 200px; height: 200px;" th:src="'/img/'+${sanpham.hinhanh}" th:alt="${sanpham.sanpham}">
-                <div class="ps-4">
-                    <h6 class="mb-3" th:text="${sanpham.sanpham}"></h6>
-                    <p class="proloop--price" style="ont-weight: 600; font-size: 14px; color: #e11b1e;">
-                        <span class="price" th:text="${sanpham.gia}+'₫'"></span>
-                    </p>
-                    <a class="text-secondary border-bottom" th:href="@{/sanpham/{id}(id=${sanpham.id})}">Xem thêm</a>
+            <div th:each="sanpham : ${sanphams}"  class="col-lg-4 col-md-6 wow fadeInUp">
+                <div class="d-flex py-5 px-4">
+                    <img style="width: 200px; height: 200px;" th:src="'/img/'+${sanpham.hinhanh}" th:alt="${sanpham.sanpham}">
+                    <div class="ps-4">
+                        <h6 class="mb-3" th:text="'Tên game: '+${sanpham.sanpham}"></h6>
+                        <p class="proloop--price" style="ont-weight: 600; font-size: 14px; color: #e11b1e;">
+                            <span class="price" th:text="'Giá: '+${sanpham.gia}+'₫'"></span>
+                        </p>
+                        <a class="text-secondary border-bottom" th:href="@{/sanpham/{id}(id=${sanpham.id})}">Xem thêm</a>
+                    </div>
                 </div>
-            </div>
-        </div>
             </div>
         </div>
     </div>

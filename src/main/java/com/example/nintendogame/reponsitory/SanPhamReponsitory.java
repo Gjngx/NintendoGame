@@ -9,4 +9,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface SanPhamReponsitory extends JpaRepository<SanPham, Long> {
     Page<SanPham> findAllByOrderByNgaydangsanphamDesc(Pageable pageable);
+    Page<SanPham> findByTheLoaiId(Long categoryId, Pageable pageable);
 }
