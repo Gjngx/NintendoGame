@@ -39,7 +39,7 @@
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
                     <h1 class="h3 mb-0 text-gray-800">Nhà sản xuất</h1>
-                    <a class="btn btn-primary" th:href="@{nhasanxuats/add}">Add</a>
+                    <a style="padding : 1%" th:href="@{nhasanxuats/add}"> <i class="fa-sharp fa-solid fa-plus"></i> Thêm nhà sản xuất</a>
                 </div>
                 <!-- Content Row -->
 
@@ -55,9 +55,9 @@
                             <td th:text="${nhasanxuat.nsx}"></td>
                             <td>
 
-                                <a class="btn btn-primary" th:href="@{#}">Edit</a>
-                                <a class="btn btn-danger" th:href="@{#}"
-                                   onclick="return confirm('Are you sure?')">Delete</a>
+                                <a class="btn btn-primary" th:href="@{/admin/nhasanxuats/edit/{id}(id=${nhasanxuat.id})}">Edit</a>
+                                <a class="btn btn-danger" th:href="@{/admin/nhasanxuats/delete/{id}(id=${nhasanxuat.id})}"
+                                   onclick="return confirm('Bạn có chắc là muốn xóa nhà sản xuất này không ?')">Delete</a>
                             </td>
                         </tr>
                     </table>
