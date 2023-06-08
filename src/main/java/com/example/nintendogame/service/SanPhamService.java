@@ -1,5 +1,6 @@
 package com.example.nintendogame.service;
 
+import com.example.nintendogame.entity.NhaSanXuat;
 import com.example.nintendogame.entity.SanPham;
 import com.example.nintendogame.reponsitory.SanPhamReponsitory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,4 +38,11 @@ public class SanPhamService {
     public Page<SanPham> getSanPhamsByNhaSanXuat(Long nhaSanXuatId, Pageable pageable) {
         return sanPhamReponsitory.findByNhaSanXuatId(nhaSanXuatId, pageable);
     }
+    public void addSanPham(SanPham sanPham){
+        sanPhamReponsitory.save(sanPham);
+    }
+    public void updateSanPham(SanPham sanPham){
+        sanPhamReponsitory.save(sanPham);
+    }
+    public void deleteSanPham(Long id){sanPhamReponsitory.deleteById(id);}
 }

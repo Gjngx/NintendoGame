@@ -25,8 +25,5 @@ public class NhaSanXuatService {
     public void updateNhaSanXuat(NhaSanXuat nhaSanXuat){
         nhaSanXuatRepository.save(nhaSanXuat);
     }
-    public void deleteNhaSanXuat(Long id){nhaSanXuatRepository.deleteById(id);
-    }
-
-
+    public void deleteNhaSanXuat(Long id){nhaSanXuatRepository.deleteById(id);}
 }

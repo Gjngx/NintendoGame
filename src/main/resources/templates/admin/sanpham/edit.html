@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Admin Nitendo</title>
+  <link rel="shortcut icon" href="/img/dragon.svg" type="image/svg" style="color:red"/>
+  <link
+          href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
+  <link th:replace="~{layoutadmin :: link-css}">
+</head>
+
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+  <!-- Sidebar -->
+  <ul th:replace="~{layoutadmin :: sidebar}"> </ul>
+  <!-- End of Sidebar -->
+
+  <!-- Content Wrapper -->
+  <div id="content-wrapper" class="d-flex flex-column">
+
+    <!-- Main Content -->
+    <div id="content">
+
+      <!-- Topbar -->
+      <nav th:replace="~{layoutadmin :: header}"></nav>
+      <!-- End of Topbar -->
+
+      <!-- Begin Page Content -->
+      <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+          <h1 class="h3 mb-0 text-gray-800">Cập nhật sản phẩm</h1>
+        </div>
+        <!-- Content Row -->
+
+        <div class="row flex-column flex-nowrap">
+          <form th:action="@{/admin/sanphams/upload}" th:object="${file}" method="post" enctype="multipart/form-data">
+            <div class="col-6 mb-3">
+              <div class="alert alert-danger" role="alert" th:if="${danger}" th:text="${danger}">
+              </div>
+              <div class="alert alert-success" role="alert" th:if="${message}" th:text="${message}">
+              </div>
+              <label class="form-label" for="fileInput" style="color: red;">Upload file trước khi cập nhật ảnh sản phẩm!</label>
+              <input type="file" id="fileInput" name="file" onchange="updateFileName()">
+              <input type="submit" value="Upload">
+            </div>
+          </form>
+          <form th:action="@{/admin/sanphams/edit/{id}(id=${sanPham.id})}" th:object="${sanPham}" method="post">
+            <div class="col-6 mb-3">
+              <label class="form-label" for="sanpham">Tên sản phẩm:</label>
+              <input class="form-control" type="text" th:field="*{sanpham}" id="sanpham">
+            </div>
+            <div class="col-6 mb-3">
+              <label class="form-label" for="hinhanh">Hình ảnh:</label>
+              <input class="form-control" type="text" th:field="*{hinhanh}" name="hinhanh" id="hinhanh" readonly>
+
+            </div>
+            <div class="col-6 mb-3">
+              <label class="form-label" for="theLoai">Thể loại:</label>
+              <select class="form-control" id="theLoai" name="theLoai.id">
+                <option value="">-- Chọn thể loại --</option>
+                <option th:each="theLoai : ${theLoais}" th:value="${theLoai.id}" th:text="${theLoai.theloai}" th:selected="${theLoai.id == sanPham.theLoai.id}"></option>
+              </select>
+            </div>
+            <div class="col-6 mb-3">
+              <label class="form-label" for="nhaSanXuat">Nhà sản xuất:</label>
+              <select class="form-control" id="nhaSanXuat" name="nhaSanXuat.id">
+                <option th:each="nhaSanXuat : ${nhaSanXuats}" th:value="${nhaSanXuat.id}" th:text="${nhaSanXuat.nsx} " th:selected="${nhaSanXuat.id == sanPham.nhaSanXuat.id}"></option>
+              </select>
+            </div>
+            <div class="col-6 mb-3">
+              <label class="form-label" for="trangThai">Trạng thái:</label>
+              <select class="form-control" id="trangThai" name="trangThai.id">
+                <option th:each="trangThai : ${trangThais}" th:value="${trangThai.id}" th:text="${trangThai.trangthai}" th:selected="${trangThai.id == sanPham.trangThai.id}"></option>              </select>
+            </div>
+            <div class="col-6 mb-3">
+              <label class="form-label" for="mota">Mô tả:</label>
+              <textarea class="form-control" id="mota" rows="5" th:field="*{mota}"></textarea>
+            </div>
+            <div class="col-6 mb-3">
+              <label class="form-label" for="soluong">Số lượng:</label>
+              <input class="form-control" type="number" th:field="*{soluong}" id="soluong">
+            </div>
+            <div class="col-6 mb-3">
+              <label class="form-label" for="gia">Giá:</label>
+              <input class="form-control" type="number" th:field="*{gia}" id="gia">
+            </div>
+            <input style="margin-left: 10px;" type="submit" class="btn btn-success" value="Save">
+          </form>
+          <br>
+          <a th:href="@{/admin/sanphams}">Back to List</a>
+        </div>
+      </div>
+    </div>
+    <!-- /.container-fluid -->
+    <!-- Footer -->
+    <footer th:replace="~{layoutadmin :: footer}"></footer>
+    <!-- End of Footer -->
+    <!-- End of Main Content -->
+  </div>
+</div>
+
+<script>
+        function updateFileName() {
+            var fileInput = document.getElementById("fileInput");
+            var fileNameInput = document.getElementById("hinhanh");
+            fileNameInput.value = fileInput.files[0].name;
+        }
+</script>
+
+<!-- End of Page Wrapper -->
+<script src="https://kit.fontawesome.com/02c8afadd6.js" crossorigin="anonymous"></script>
+<script th:replace="~{layoutadmin::script}"></script>
+</body>
+</html>
