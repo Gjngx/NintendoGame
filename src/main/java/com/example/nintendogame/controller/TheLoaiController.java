@@ -1,10 +1,9 @@
 package com.example.nintendogame.controller;
 
 import com.example.nintendogame.entity.SanPham;
-import com.example.nintendogame.reponsitory.NhaSanXuatReponsity;
-import com.example.nintendogame.reponsitory.TheLoaiReponsitory;
+import com.example.nintendogame.reponsitory.NhaSanXuatRepository;
+import com.example.nintendogame.reponsitory.TheLoaiRepository;
 import com.example.nintendogame.service.SanPhamService;
-import com.example.nintendogame.service.TheLoaiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -21,13 +20,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/theloai")
 public class TheLoaiController {
     @Autowired
-    private TheLoaiService theLoaiService;
-    @Autowired
-    private TheLoaiReponsitory theLoaiReponsitory;
+    private TheLoaiRepository theLoaiRepository;
     @Autowired
     private SanPhamService sanPhamService;
     @Autowired
-    private NhaSanXuatReponsity nhaSanXuatReponsity;
+    private NhaSanXuatRepository nhaSanXuatReponsity;
 
     @GetMapping("/{id}/sanphams")
     public String getProductsByCategory(
@@ -36,7 +33,7 @@ public class TheLoaiController {
             @RequestParam(defaultValue = "18") int size,
             Model model) {
         Pageable pageable = PageRequest.of(page, size);
-        model.addAttribute("theLoais", theLoaiReponsitory.findAll());
+        model.addAttribute("theLoais", theLoaiRepository.findAll());
         model.addAttribute("nhaSanXuats", nhaSanXuatReponsity.findAll());
         Page<SanPham> sanPhamsPage = sanPhamService.getSanPhamsByTheLoai(theLoaiId, pageable);
         model.addAttribute("Id", theLoaiId);

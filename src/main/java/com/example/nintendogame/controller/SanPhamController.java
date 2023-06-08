@@ -1,12 +1,10 @@
 package com.example.nintendogame.controller;
 
 import com.example.nintendogame.entity.SanPham;
-import com.example.nintendogame.entity.TheLoai;
-import com.example.nintendogame.reponsitory.NhaSanXuatReponsity;
-import com.example.nintendogame.reponsitory.TheLoaiReponsitory;
+import com.example.nintendogame.reponsitory.NhaSanXuatRepository;
+import com.example.nintendogame.reponsitory.TheLoaiRepository;
 import com.example.nintendogame.service.NhaSanXuatService;
 import com.example.nintendogame.service.SanPhamService;
-import com.example.nintendogame.service.TheLoaiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -23,20 +21,18 @@ public class SanPhamController {
     @Autowired
     private SanPhamService sanPhamService;
     @Autowired
-    private TheLoaiService theLoaiService;
-    @Autowired
-    private TheLoaiReponsitory theLoaiReponsitory;
+    private TheLoaiRepository theLoaiRepository;
     @Autowired
     private NhaSanXuatService nhaSanXuatService;
     @Autowired
-    private NhaSanXuatReponsity nhaSanXuatReponsity;
+    private NhaSanXuatRepository nhaSanXuatReponsity;
     @GetMapping("/updatedesc")
     public String getSortedAndPagedSanPhams(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "18") int size,
             Model model) {
         Pageable pageable = PageRequest.of(page, size);
-        model.addAttribute("theLoais", theLoaiReponsitory.findAll());
+        model.addAttribute("theLoais", theLoaiRepository.findAll());
         model.addAttribute("nhaSanXuats", nhaSanXuatReponsity.findAll());
         Page<SanPham> sanPhamsPage = sanPhamService.getSortedAndPagedSanPhams(pageable);
         model.addAttribute("sanPhams", sanPhamsPage);

@@ -7,11 +7,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Admin Nitendo</title>
-    <link rel="shortcut icon" href="/img/dragon.svg" type="image/svg" style="color:red"/>
     <link
             href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
             rel="stylesheet">
     <link th:replace="~{layoutadmin :: link-css}">
+
 </head>
 
 <body id="page-top">
@@ -38,29 +38,20 @@
 
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">Nhà sản xuất</h1>
-                    <a style="padding : 1%" th:href="@{nhasanxuats/add}"> <i class="fa-sharp fa-solid fa-plus"></i> Thêm nhà sản xuất</a>
+                    <h1 class="h3 mb-0 text-gray-800">Thêm nhà sản xuất</h1>
                 </div>
                 <!-- Content Row -->
 
-                <div class="row">
-                    <table class="table">
-                        <tr>
-                            <th>ID</th>
-                            <th>Nhà sản xuất</th>
-                            <th>Action</th>
-                        </tr>
-                        <tr th:each="nhasanxuat : ${nhasanxuats}">
-                            <td th:text="${nhasanxuat.id}"></td>
-                            <td th:text="${nhasanxuat.nsx}"></td>
-                            <td>
-
-                                <a class="btn btn-primary" th:href="@{/admin/nhasanxuats/edit/{id}(id=${nhasanxuat.id})}">Edit</a>
-                                <a class="btn btn-danger" th:href="@{/admin/nhasanxuats/delete/{id}(id=${nhasanxuat.id})}"
-                                   onclick="return confirm('Bạn có chắc là muốn xóa nhà sản xuất này không ?')">Delete</a>
-                            </td>
-                        </tr>
-                    </table>
+                <div class="row flex-column">
+                    <form th:action="@{/admin/theloais/add}" th:object="${theLoai}" method="post">
+                        <div class="col-6 mb-3">
+                            <label class="form-label" for="theloai">Tên nhà sản xuất:</label>
+                            <input class="form-control" type="text" th:field="*{theloai}" id="theloai">
+                        </div>
+                        <input style="margin-left: 10px;" type="submit" class="btn btn-success" value="Save">
+                    </form>
+                    <br>
+                    <a th:href="@{/admin/theloais}">Back to List</a>
                 </div>
             </div>
         </div>
@@ -71,9 +62,9 @@
         <!-- End of Main Content -->
     </div>
 </div>
+
 <!-- End of Page Wrapper -->
 <script src="https://kit.fontawesome.com/02c8afadd6.js" crossorigin="anonymous"></script>
 <script th:replace="~{layoutadmin::script}"></script>
-
 </body>
 </html>

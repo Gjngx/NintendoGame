@@ -1,0 +1,54 @@
+package com.example.nintendogame.controller;
+
+import com.example.nintendogame.entity.NhaSanXuat;
+import com.example.nintendogame.entity.TheLoai;
+import com.example.nintendogame.service.TheLoaiService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@Controller
+@RequestMapping("/admin/theloais")
+public class TheLoaiAdminController {
+    @Autowired
+    private TheLoaiService theLoaiService;
+
+    @GetMapping
+    public String GetTheLoai(Model model){
+        List<TheLoai> theLoais = theLoaiService.GetAllTheLoaiAdmin();
+        model.addAttribute("theloais", theLoais);
+        return "admin/theloai/index";
+    }
+    @GetMapping("/add")
+    public String addTheLoaiForm(Model model){
+        model.addAttribute("theLoai", new TheLoai());
+        return "admin/theloai/add";
+    }
+    @PostMapping("/add")
+    public String addTheLoai( @ModelAttribute("theLoai") TheLoai theLoai){
+        theLoaiService.addTheLoai(theLoai);
+        return "redirect:/admin/theloais";
+    }
+    @GetMapping("/delete/{id}")
+    public String deleteTheLoai(@PathVariable("id") Long Id) {
+        theLoaiService.deleteTheLoai(Id);
+        return "redirect:/admin/theloais";
+    }
+    @GetMapping("/edit/{id}")
+    public String editTheLoaiForm(@PathVariable("id") Long Id, Model model) {
+        TheLoai theLoai = theLoaiService.getTheLoaiById(Id);
+        model.addAttribute("theLoai", theLoai);
+        return "admin/theloai/edit";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String editTheLoai(@PathVariable("id") Long Id, @ModelAttribute("theLoai") TheLoai updatedTheLoai) {
+        TheLoai theLoai = theLoaiService.getTheLoaiById(Id);
+        theLoai.setTheloai(updatedTheLoai.getTheloai());
+        theLoaiService.updateTheLoai(theLoai);
+        return "redirect:/admin/theloais";
+    }
+}

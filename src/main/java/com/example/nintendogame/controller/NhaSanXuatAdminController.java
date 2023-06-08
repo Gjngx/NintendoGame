@@ -16,6 +16,7 @@ import java.util.List;
 public class NhaSanXuatAdminController {
     @Autowired
     private NhaSanXuatService nhaSanXuatService;
+
     @GetMapping
     public String GetNhaSanXuat(Model model){
         List<NhaSanXuat> nhaSanXuats = nhaSanXuatService.GetAllNhaSanXuatAdmin();
@@ -41,7 +42,7 @@ public class NhaSanXuatAdminController {
     @GetMapping("/edit/{id}")
     public String editNhaSanXuatForm(@PathVariable("id") Long Id, Model model) {
         NhaSanXuat nhaSanXuat = nhaSanXuatService.getNhaSanXuatById(Id);
-        model.addAttribute("nhaSanXuat", nhaSanXuat);
+        model.addAttribute("nhasanxuat", nhaSanXuat);
         return "admin/nhasanxuat/edit";
     }
 
