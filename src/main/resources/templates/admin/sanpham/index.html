@@ -36,7 +36,15 @@
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
                     <h1 class="h3 mb-0 text-gray-800">Sản phẩm</h1>
-                    <a style="padding : 1%" th:href="@{sanphams/add}"> <i class="fa-sharp fa-solid fa-plus"></i> Thêm sản phẩm</a>
+                    <a style="padding : 1%" th:href="@{/admin/sanphams/add}"> <i class="fa-sharp fa-solid fa-plus"></i> Thêm sản phẩm</a>
+                </div>
+                <div class="input-group" style="padding: 1%; flex-direction: row-reverse;">
+                    <form th:action="@{/admin/sanphams/search}" method="GET">
+                        <div class="form-outline" style="display: flex; padding: 1%;">
+                            <input type="text" class="form-control" name="name" placeholder="Nhập tên sản phẩm">
+                            <button type="submit" class="btn btn-primary">search</button>
+                        </div>
+                    </form>
                 </div>
                 <!-- Content Row -->
                 <div class="row">

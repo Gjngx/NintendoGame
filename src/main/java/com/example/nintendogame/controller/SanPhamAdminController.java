@@ -47,6 +47,14 @@ public class SanPhamAdminController {
         model.addAttribute("currentPage", page);
         return "admin/sanpham/index";
     }
+
+    @GetMapping("/search")
+    public String searchSanPham(@RequestParam("name") String name, Model model) {
+        List<SanPham> sanPhams = sanPhamService.searchSanPhamsByName(name);
+        model.addAttribute("sanPhams", sanPhams);
+        return "admin/sanpham/search";
+    }
+
     @GetMapping("/add")
     public String addSanPhamForm(Model model){
         model.addAttribute("sanPham", new SanPham());

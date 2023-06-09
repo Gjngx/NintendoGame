@@ -1,6 +1,7 @@
 package com.example.nintendogame.service;
 
 import com.example.nintendogame.entity.NhaSanXuat;
+import com.example.nintendogame.entity.SanPham;
 import com.example.nintendogame.entity.TheLoai;
 import com.example.nintendogame.reponsitory.NhaSanXuatRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,4 +33,7 @@ public class NhaSanXuatService {
         nhaSanXuatRepository.save(nhaSanXuat);
     }
     public void deleteNhaSanXuat(Long id){nhaSanXuatRepository.deleteById(id);}
+    public List<NhaSanXuat> searchNhaSanXuatsByName(String name) {
+        return nhaSanXuatRepository.findByNsxContainingIgnoreCase(name);
+    }
 }

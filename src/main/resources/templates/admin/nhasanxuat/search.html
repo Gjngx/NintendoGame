@@ -12,10 +12,10 @@
           href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
           rel="stylesheet">
   <link th:replace="~{layoutadmin :: link-css}">
-
 </head>
 
 <body id="page-top">
+
 <!-- Page Wrapper -->
 <div id="wrapper">
 
@@ -28,62 +28,48 @@
 
     <!-- Main Content -->
     <div id="content">
+
       <!-- Topbar -->
       <nav th:replace="~{layoutadmin :: header}"></nav>
       <!-- End of Topbar -->
+
       <!-- Begin Page Content -->
       <div class="container-fluid">
+
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-          <h1 class="h3 mb-0 text-gray-800">Thể loại</h1>
-          <a style="padding : 1%" th:href="@{/admin/theloais/add}"> <i class="fa-sharp fa-solid fa-plus"></i> Thêm thể loại</a>
+          <h1 class="h3 mb-0 text-gray-800">Nhà sản xuất</h1>
+          <a style="padding : 1%" th:href="@{/admin/nhasanxuats/add}"> <i class="fa-sharp fa-solid fa-plus"></i> Thêm nhà sản xuất</a>
         </div>
         <div class="input-group" style="padding: 1%; flex-direction: row-reverse;">
-          <form th:action="@{/admin/theloais/search}" method="GET">
+          <form th:action="@{/admin/nhasanxuats/search}" method="GET">
             <div class="form-outline" style="display: flex; padding: 1%;">
-              <input type="text" class="form-control" name="name" placeholder="Nhập tên thể loại">
+              <input type="text" class="form-control" name="name" placeholder="Nhập tên nhà sản xuất">
               <button type="submit" class="btn btn-primary">search</button>
             </div>
           </form>
         </div>
         <!-- Content Row -->
+
         <div class="row">
           <table class="table">
             <tr>
               <th>ID</th>
-              <th>Thể loại</th>
+              <th>Nhà sản xuất</th>
               <th>Action</th>
             </tr>
-            <tr th:each="theLoai : ${theloais}">
-              <td th:text="${theLoai.id}"></td>
-              <td th:text="${theLoai.theloai}"></td>
+            <tr th:each="nhasanxuat : ${nhasanxuats}">
+              <td th:text="${nhasanxuat.id}"></td>
+              <td th:text="${nhasanxuat.nsx}"></td>
               <td>
 
-                <a class="btn btn-primary" th:href="@{/admin/theloais/edit/{id}(id=${theLoai.id})}">Edit</a>
-                <a class="btn btn-danger" th:href="@{/admin/theloais/delete/{id}(id=${theLoai.id})}"
+                <a class="btn btn-primary" th:href="@{/admin/nhasanxuats/edit/{id}(id=${nhasanxuat.id})}">Edit</a>
+                <a class="btn btn-danger" th:href="@{/admin/nhasanxuats/delete/{id}(id=${nhasanxuat.id})}"
                    onclick="return confirm('Bạn có chắc là muốn xóa nhà sản xuất này không ?')">Delete</a>
               </td>
             </tr>
           </table>
         </div>
-        <nav aria-label="Page navigation example">
-          <ul class="pagination justify-content-center">
-            <li th:if="${theloais.number != 0}">
-              <a class="page-link" th:href="@{/admin/theloais(page=${theloais.number - 1})}">Previous</a>
-            </li>
-            <li th:unless="${theloais.number == 0}">
-            </li>
-            <li th:each="i : ${#numbers.sequence(0, theloais.totalPages - 1)}"
-                class="page-item" th:classappend="${currentPage == i} ?'active'">
-              <a class="page-link" th:href="@{/admin/theloais(page=${i})}" th:text="${i + 1}"></a>
-            </li>
-            <li th:if="${currentPage < theloais.totalPages - 1}">
-              <a class="page-link" th:href="@{/admin/theloais(page=${theloais.number + 1})}">Next</a>
-            </li>
-            <li th:unless="${currentPage == theloais.totalPages - 1}">
-            </li>
-          </ul>
-        </nav>
       </div>
     </div>
     <!-- /.container-fluid -->

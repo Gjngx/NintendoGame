@@ -1,5 +1,6 @@
 package com.example.nintendogame.service;
 
+import com.example.nintendogame.entity.NhaSanXuat;
 import com.example.nintendogame.entity.TheLoai;
 import com.example.nintendogame.reponsitory.TheLoaiRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,4 +32,7 @@ public class TheLoaiService {
         theLoaiRepository.save(theLoai);
     }
     public void deleteTheLoai(Long id){theLoaiRepository.deleteById(id);}
+    public List<TheLoai> searchTheLoaisByName(String name) {
+        return theLoaiRepository.findByTheloaiContainingIgnoreCase(name);
+    }
 }

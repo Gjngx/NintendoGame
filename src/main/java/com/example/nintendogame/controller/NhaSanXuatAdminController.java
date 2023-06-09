@@ -1,6 +1,7 @@
 package com.example.nintendogame.controller;
 
 import com.example.nintendogame.entity.NhaSanXuat;
+import com.example.nintendogame.entity.SanPham;
 import com.example.nintendogame.entity.TheLoai;
 import com.example.nintendogame.service.NhaSanXuatService;
 import com.example.nintendogame.service.SanPhamService;
@@ -31,6 +32,13 @@ public class NhaSanXuatAdminController {
         model.addAttribute("nhasanxuats", nhaSanXuatPage);
         model.addAttribute("currentPage", page);
         return "admin/nhasanxuat/index";
+    }
+
+    @GetMapping("/search")
+    public String searchNhaSanXuat(@RequestParam("name") String name, Model model) {
+        List<NhaSanXuat> nhaSanXuats = nhaSanXuatService.searchNhaSanXuatsByName(name);
+        model.addAttribute("nhasanxuats", nhaSanXuats);
+        return "admin/nhasanxuat/search";
     }
 
     @GetMapping("/add")

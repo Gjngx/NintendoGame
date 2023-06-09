@@ -35,55 +35,54 @@
       <div class="container-fluid">
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-          <h1 class="h3 mb-0 text-gray-800">Thể loại</h1>
-          <a style="padding : 1%" th:href="@{/admin/theloais/add}"> <i class="fa-sharp fa-solid fa-plus"></i> Thêm thể loại</a>
+          <h1 class="h3 mb-0 text-gray-800">Sản phẩm</h1>
+          <a style="padding : 1%" th:href="@{/admin/sanphams/add}"> <i class="fa-sharp fa-solid fa-plus"></i> Thêm sản phẩm</a>
         </div>
+
         <div class="input-group" style="padding: 1%; flex-direction: row-reverse;">
-          <form th:action="@{/admin/theloais/search}" method="GET">
-            <div class="form-outline" style="display: flex; padding: 1%;">
-              <input type="text" class="form-control" name="name" placeholder="Nhập tên thể loại">
-              <button type="submit" class="btn btn-primary">search</button>
-            </div>
+          <form th:action="@{/admin/sanphams/search}" method="GET">
+          <div class="form-outline" style="display: flex; padding: 1%;">
+            <input type="text" class="form-control" name="name" placeholder="Nhập tên sản phẩm">
+            <button type="submit" class="btn btn-primary">search</button>
+          </div>
           </form>
         </div>
+
         <!-- Content Row -->
         <div class="row">
           <table class="table">
             <tr>
               <th>ID</th>
+              <th>Sản phẩm</th>
+              <th>Hình ảnh</th>
               <th>Thể loại</th>
+              <th>Nhà sản xuất</th>
+              <th>Tình trạng</th>
+              <th>Mô tả</th>
+              <th>Số lượng</th>
+              <th>Giá</th>
+              <th>Ngày tạo</th>
               <th>Action</th>
             </tr>
-            <tr th:each="theLoai : ${theloais}">
-              <td th:text="${theLoai.id}"></td>
-              <td th:text="${theLoai.theloai}"></td>
+            <tr th:each="sanPham : ${sanPhams}">
+              <td th:text="${sanPham.id}"></td>
+              <td th:text="${sanPham.sanpham}"></td>
+              <td><img style="width: 100px; height: 100px;" th:src="'/img/anhgame/'+${sanPham.hinhanh}" th:alt="${sanPham.sanpham}"></td>
+              <td th:text="${sanPham.theLoai.theloai}"></td>
+              <td th:text="${sanPham.nhaSanXuat.nsx}"></td>
+              <td th:text="${sanPham.trangThai.trangthai}"></td>
+              <td th:text="${sanPham.mota}"></td>
+              <td th:text="${sanPham.soluong}"></td>
+              <td th:text="${sanPham.gia}"></td>
+              <td th:text="${sanPham.ngaydangsanpham}"></td>
               <td>
-
-                <a class="btn btn-primary" th:href="@{/admin/theloais/edit/{id}(id=${theLoai.id})}">Edit</a>
-                <a class="btn btn-danger" th:href="@{/admin/theloais/delete/{id}(id=${theLoai.id})}"
-                   onclick="return confirm('Bạn có chắc là muốn xóa nhà sản xuất này không ?')">Delete</a>
+                <a class="btn btn-primary" th:href="@{/admin/sanphams/edit/{id}(id=${sanPham.id})}">Edit</a>
+                <a class="btn btn-danger" th:href="@{/admin/sanphams/delete/{id}(id=${sanPham.id})}"
+                   onclick="return confirm('Bạn có chắc là muốn xóa sản phẩm này không ?')">Delete</a>
               </td>
             </tr>
           </table>
         </div>
-        <nav aria-label="Page navigation example">
-          <ul class="pagination justify-content-center">
-            <li th:if="${theloais.number != 0}">
-              <a class="page-link" th:href="@{/admin/theloais(page=${theloais.number - 1})}">Previous</a>
-            </li>
-            <li th:unless="${theloais.number == 0}">
-            </li>
-            <li th:each="i : ${#numbers.sequence(0, theloais.totalPages - 1)}"
-                class="page-item" th:classappend="${currentPage == i} ?'active'">
-              <a class="page-link" th:href="@{/admin/theloais(page=${i})}" th:text="${i + 1}"></a>
-            </li>
-            <li th:if="${currentPage < theloais.totalPages - 1}">
-              <a class="page-link" th:href="@{/admin/theloais(page=${theloais.number + 1})}">Next</a>
-            </li>
-            <li th:unless="${currentPage == theloais.totalPages - 1}">
-            </li>
-          </ul>
-        </nav>
       </div>
     </div>
     <!-- /.container-fluid -->

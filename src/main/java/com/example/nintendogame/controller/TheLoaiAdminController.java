@@ -31,6 +31,13 @@ public class TheLoaiAdminController {
         return "admin/theloai/index";
     }
 
+    @GetMapping("/search")
+    public String searchTheLoai(@RequestParam("name") String name, Model model) {
+        List<TheLoai> theLoais = theLoaiService.searchTheLoaisByName(name);
+        model.addAttribute("theloais", theLoais);
+        return "admin/theloai/search";
+    }
+
     @GetMapping("/add")
     public String addTheLoaiForm(Model model){
         model.addAttribute("theLoai", new TheLoai());
