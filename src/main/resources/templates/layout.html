@@ -41,7 +41,7 @@
       <a href="/sanpham/updatedesc" class="nav-item nav-link">Sản phẩm</a>
       <a href="/admin" class="nav-item nav-link" sec:authorize="hasAnyAuthority('ADMIN')">Quản lý</a>
       <a href="/admin" class="nav-item nav-link" sec:authorize="hasAnyAuthority('STAFF')">Quản lý</a>
-      <a href="#" class="nav-item nav-link"><i class="fa-sharp fa-solid fa-cart-shopping"></i> Giỏ hàng</a>
+      <a href="/giohang" class="nav-item nav-link"><i class="fa-sharp fa-solid fa-cart-shopping"></i> Giỏ hàng</a>
     </div>
     <li sec:authorize="isAuthenticated()">
       <form th:action = "@{/logout}" method="post">

@@ -67,7 +67,6 @@
             <div class="col-6 mb-3">
               <label class="form-label" for="theLoai">Thể loại:</label>
               <select class="form-control" id="theLoai" name="theLoai.id">
-                <option value="">-- Chọn thể loại --</option>
                 <option th:each="theLoai : ${theLoais}" th:value="${theLoai.id}" th:text="${theLoai.theloai}" th:selected="${theLoai.id == sanPham.theLoai.id}"></option>
               </select>
             </div>
@@ -88,7 +87,7 @@
             </div>
             <div class="col-6 mb-3">
               <label class="form-label" for="soluong">Số lượng:</label>
-              <input class="form-control" type="number" th:field="*{soluong}" id="soluong">
+              <input class="form-control" min="1" type="number" th:field="*{soluong}" id="soluong">
             </div>
             <div class="col-6 mb-3">
               <label class="form-label" for="gia">Giá:</label>
