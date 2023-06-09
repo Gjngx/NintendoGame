@@ -53,4 +53,12 @@ public class SanPhamController {
         model.addAttribute("sanPham", sanPhams);
         return "user/sanpham/detail";
     }
+    @GetMapping("/search")
+    public String searchSanPham(@RequestParam("name") String name, Model model) {
+        model.addAttribute("theLoais", theLoaiRepository.findAll());
+        model.addAttribute("nhaSanXuats", nhaSanXuatReponsity.findAll());
+        List<SanPham> sanPhams = sanPhamService.searchSanPhamsByName(name);
+        model.addAttribute("sanPhams", sanPhams);
+        return "user/sanpham/search";
+    }
 }

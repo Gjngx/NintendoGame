@@ -53,6 +53,14 @@
                                         <li th:each="nhaSanXuat : ${nhaSanXuats}"><a class="dropdown-item" th:href="@{/nhasanxuat/{id}/sanphams(id=${nhaSanXuat.id})}" th:text="${nhaSanXuat.nsx}"></a></li>
                                     </ul>
                                 </div>
+                                <form th:action="@{/sanpham/search}" method="GET">
+                                    <div class="input-group" style="padding: 1%;">
+                                        <div class="form-outline" style="display: flex; padding: 1%;">
+                                            <input type="text" class="form-control" name="name" placeholder="Nhập tên sản phẩm">
+                                            <button type="submit" class="btn btn-primary">search</button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>

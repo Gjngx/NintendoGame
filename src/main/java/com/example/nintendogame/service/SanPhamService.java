@@ -45,4 +45,9 @@ public class SanPhamService {
         sanPhamReponsitory.save(sanPham);
     }
     public void deleteSanPham(Long id){sanPhamReponsitory.deleteById(id);}
+
+    public List<SanPham> searchSanPhamsByName(String name) {
+        return sanPhamReponsitory.findBySanphamContainingIgnoreCase(name);
+    }
+
 }
