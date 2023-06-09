@@ -2,8 +2,12 @@ package com.example.nintendogame.controller;
 
 import com.example.nintendogame.entity.NhaSanXuat;
 import com.example.nintendogame.entity.TheLoai;
+import com.example.nintendogame.entity.User;
 import com.example.nintendogame.service.TheLoaiService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,13 +19,18 @@ import java.util.List;
 public class TheLoaiAdminController {
     @Autowired
     private TheLoaiService theLoaiService;
-
     @GetMapping
-    public String GetTheLoai(Model model){
-        List<TheLoai> theLoais = theLoaiService.GetAllTheLoaiAdmin();
-        model.addAttribute("theloais", theLoais);
+    public String getAllAndPaged(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            Model model) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<TheLoai> theLoaiPage = theLoaiService.getAllAndPaged(pageable);
+        model.addAttribute("theloais", theLoaiPage);
+        model.addAttribute("currentPage", page);
         return "admin/theloai/index";
     }
+
     @GetMapping("/add")
     public String addTheLoaiForm(Model model){
         model.addAttribute("theLoai", new TheLoai());

@@ -57,7 +57,7 @@
                         <tr th:each="sanPham : ${sanPhams}">
                             <td th:text="${sanPham.id}"></td>
                             <td th:text="${sanPham.sanpham}"></td>
-                            <td><img style="width: 100px; height: 100px;" th:src="'/img/'+${sanPham.hinhanh}" th:alt="${sanPham.sanpham}"></td>
+                            <td><img style="width: 100px; height: 100px;" th:src="'/img/anhgame/'+${sanPham.hinhanh}" th:alt="${sanPham.sanpham}"></td>
                             <td th:text="${sanPham.theLoai.theloai}"></td>
                             <td th:text="${sanPham.nhaSanXuat.nsx}"></td>
                             <td th:text="${sanPham.trangThai.trangthai}"></td>
@@ -81,7 +81,7 @@
                         <li th:unless="${sanPhams.number == 0}">
                         </li>
                         <li th:each="i : ${#numbers.sequence(0, sanPhams.totalPages - 1)}"
-                            th:class="${currentPage == i} ? 'active' : ''">
+                            class="page-item" th:classappend="${currentPage == i} ?'active'">
                             <a class="page-link" th:href="@{/admin/sanphams(page=${i})}" th:text="${i + 1}"></a>
                         </li>
                         <li th:if="${currentPage < sanPhams.totalPages - 1}">

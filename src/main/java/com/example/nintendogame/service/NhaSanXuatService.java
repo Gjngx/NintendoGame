@@ -1,8 +1,11 @@
 package com.example.nintendogame.service;
 
 import com.example.nintendogame.entity.NhaSanXuat;
+import com.example.nintendogame.entity.TheLoai;
 import com.example.nintendogame.reponsitory.NhaSanXuatRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,6 +17,9 @@ public class NhaSanXuatService {
     private NhaSanXuatRepository nhaSanXuatRepository;
     public List<NhaSanXuat>GetAllNhaSanXuatAdmin(){
         return nhaSanXuatRepository.findAll();
+    }
+    public Page<NhaSanXuat> getAllAndPaged(Pageable pageable) {
+        return nhaSanXuatRepository.findAll(pageable);
     }
     public NhaSanXuat getNhaSanXuatById(Long id){
         Optional<NhaSanXuat> optional = nhaSanXuatRepository.findById(id);

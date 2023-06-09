@@ -1,9 +1,12 @@
 package com.example.nintendogame.service;
 
+import com.example.nintendogame.entity.SanPham;
 import com.example.nintendogame.entity.User;
 import com.example.nintendogame.reponsitory.IUserRepository;
 import com.example.nintendogame.reponsitory.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -12,6 +15,11 @@ public class UserService {
     private IUserRepository userRepository;
     @Autowired
     private RoleRepository roleRepository;
+
+    public Page<User> getAllAndPaged(Pageable pageable) {
+        return userRepository.findAll(pageable);
+    }
+
     public void save(User user){
         userRepository.save(user);
         Long userId = userRepository.getUserIdByUsername(user.getUsername());
@@ -20,4 +28,6 @@ public class UserService {
             userRepository.addRoleToUser(userId, roleId);
         }
     }
+    public void deleteUsers(Long id){userRepository.deleteById(id);}
+
 }

@@ -39,7 +39,7 @@ public class SanPhamAdminController {
     @GetMapping
     public String getSortedAndPagedSanPhams(
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "5") int size,
             Model model) {
         Pageable pageable = PageRequest.of(page, size);
         Page<SanPham> sanPhamsPage = sanPhamService.getSortedAndPagedSanPhams(pageable);
@@ -62,7 +62,7 @@ public class SanPhamAdminController {
             return "redirect:/admin/sanphams/add";
         }
         try {
-            String filePath = "/Users/giang/Desktop/Lab_Springboot/DoAn/NintendoGame/src/main/resources/static/img/" + file.getOriginalFilename();
+            String filePath = "/Users/giang/Desktop/Lab_Springboot/DoAn/NintendoGame/src/main/resources/static/img/anhgame/" + file.getOriginalFilename();
             file.transferTo(new File(filePath));
             redirectAttributes.addFlashAttribute("message", "Tải ảnh thành công! Bây giờ bạn có thể thêm sản phẩm thêm mới hoặc cập nhật sản phẩm.");
             return "redirect:/admin/sanphams/add";

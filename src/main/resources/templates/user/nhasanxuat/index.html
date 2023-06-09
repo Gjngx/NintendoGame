@@ -61,7 +61,7 @@
       <div class="row g-4">
         <div th:each="sanpham : ${sanPhams}" class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
           <div class="d-flex py-5 px-4">
-            <img style="width: 200px; height: 200px;" th:src="'/img/'+${sanpham.hinhanh}" th:alt="${sanpham.sanpham}">
+            <img style="width: 200px; height: 200px;" th:src="'/img/anhgame/'+${sanpham.hinhanh}" th:alt="${sanpham.sanpham}">
             <div class="ps-4">
               <h6 class="mb-3" th:text="'Tên game: '+${sanpham.sanpham}"></h6>
               <p class="proloop--price" style="ont-weight: 600; font-size: 14px; color: #e11b1e;">
