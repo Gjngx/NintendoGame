@@ -2,23 +2,26 @@ package com.example.nintendogame.entity;
 
 import com.example.nintendogame.reponsitory.IUserRepository;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;
-import java.util.Collections;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class CustomUserDetail implements UserDetails {
-    private final User user;
-    private final IUserRepository userRepository;
 
-    public CustomUserDetail(User user, IUserRepository userRepository) {
-        this.user = user;
-        this.userRepository = userRepository;
-    }
+    private final User user;
+    private final IUserRepository iUserRepository;
+    public CustomUserDetail(User user, IUserRepository UserRepository) {this.user = user; this.iUserRepository = UserRepository;}
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.emptyList();
+        Set<SimpleGrantedAuthority> authorities = new HashSet<>();
+        String[] roles = iUserRepository.getRolesOfUser(user.getId());
+        for(String role : roles) {
+            authorities.add(new SimpleGrantedAuthority(role));
+        }
+        return authorities;
     }
 
     @Override

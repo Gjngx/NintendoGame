@@ -6,8 +6,10 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
-import java.util.Date;
+
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -55,9 +57,11 @@ public class User {
     @Column(name = "trangthai", nullable = false)
     private boolean trangthai;
 
-    @ManyToOne
-    @JoinColumn(name = "role_id")
-    private RoleUser roleUser;
+    @ManyToMany(fetch=FetchType.EAGER) @JoinTable(name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<HoaDon> hoaDons;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)

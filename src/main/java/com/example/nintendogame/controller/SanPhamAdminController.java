@@ -2,18 +2,19 @@ package com.example.nintendogame.controller;
 
 
 import com.example.nintendogame.entity.SanPham;
-import com.example.nintendogame.entity.TheLoai;
 import com.example.nintendogame.reponsitory.TrangThaiRepository;
 import com.example.nintendogame.service.NhaSanXuatService;
 import com.example.nintendogame.service.SanPhamService;
 import com.example.nintendogame.service.TheLoaiService;
 import com.example.nintendogame.service.TrangThaiService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -72,11 +73,13 @@ public class SanPhamAdminController {
         }
     }
     @PostMapping("/add")
-    public String addSanPham(@ModelAttribute("sanPham") SanPham sanPham){
+    public String addSanPham(@Valid @ModelAttribute("sanPham") SanPham sanPham , BindingResult bindingResult){
+        if (bindingResult.hasErrors()) {
+            return "admin/sanpham/add";
+        }
         sanPhamService.addSanPham(sanPham);
         return "redirect:/admin/sanphams";
     }
-
     @GetMapping("/edit/{id}")
     public String editSanPhamForm( @PathVariable("id") Long Id, Model model) {
         SanPham sanPham = sanPhamService.getSanPhamById(Id);
