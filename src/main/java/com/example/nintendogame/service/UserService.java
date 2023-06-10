@@ -9,12 +9,19 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UserService {
     @Autowired
     private IUserRepository userRepository;
     @Autowired
     private RoleRepository roleRepository;
+
+    public User getUserById(Long id){
+        Optional<User> optional = userRepository.findById(id);
+        return optional.orElse(null);
+    }
 
     public Page<User> getAllAndPaged(Pageable pageable) {
         return userRepository.findAll(pageable);

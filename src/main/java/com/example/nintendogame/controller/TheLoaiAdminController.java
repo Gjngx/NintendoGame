@@ -1,13 +1,14 @@
 package com.example.nintendogame.controller;
 
-import com.example.nintendogame.entity.NhaSanXuat;
 import com.example.nintendogame.entity.TheLoai;
-import com.example.nintendogame.entity.User;
 import com.example.nintendogame.service.TheLoaiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -48,6 +49,7 @@ public class TheLoaiAdminController {
         theLoaiService.addTheLoai(theLoai);
         return "redirect:/admin/theloais";
     }
+
     @GetMapping("/delete/{id}")
     public String deleteTheLoai(@PathVariable("id") Long Id) {
         theLoaiService.deleteTheLoai(Id);
