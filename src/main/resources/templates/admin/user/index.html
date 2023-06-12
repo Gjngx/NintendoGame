@@ -61,6 +61,7 @@
               <td th:text="${user.gioitinh}"></td>
               <td th:text="${user.ngaysinh}"></td>
               <td>
+                <a class="btn btn-primary" th:href="@{/admin/users/edit/{id}(id=${user.id})}">Edit</a>
                 <a class="btn btn-danger" th:href="@{/admin/users/delete/{id}(id=${user.id})}"
                    onclick="return confirm('Bạn có chắc là muốn xóa tài khoản này không ?')">Delete</a>
               </td>
@@ -75,7 +76,7 @@
             <li th:unless="${users.number == 0}">
             </li>
             <li th:each="i : ${#numbers.sequence(0, users.totalPages - 1)}"
-                th:class="${currentPage == i} ? 'active' : ''">
+                class="page-item" th:classappend="${currentPage == i} ?'active'">
               <a class="page-link" th:href="@{/admin/users(page=${i})}" th:text="${i + 1}"></a>
             </li>
             <li th:if="${currentPage < users.totalPages - 1}">
