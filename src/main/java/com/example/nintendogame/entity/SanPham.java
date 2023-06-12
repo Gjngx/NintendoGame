@@ -3,11 +3,15 @@ package com.example.nintendogame.entity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
+import org.hibernate.Hibernate;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 
 @Entity
@@ -22,7 +26,7 @@ public class SanPham {
     @Column(name = "mota", length = 500, nullable = false)
     private String mota;
     @Column(name = "soluong", length = 50, nullable = false)
-    private Long soluong;
+    private int soluong;
     @Column(name = "hinhanh", length = 150, nullable = false)
     private String hinhanh;
     @Column(name = "gia")
@@ -41,8 +45,21 @@ public class SanPham {
     @ManyToOne
     @JoinColumn(name = "nhasanxuat_id")
     private NhaSanXuat nhaSanXuat;
+
     @OneToMany(mappedBy = "sanPham", cascade = CascadeType.ALL)
-    private List<ChiTietHoaDon> chiTietHoaDons;
-    @OneToMany(mappedBy = "sanPham", cascade = CascadeType.ALL)
-    private List<ChiTietGioHang> chiTietGioHangs;
+    @ToString.Exclude
+    private List<ItemInvoice> itemInvoices = new ArrayList<>();
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) !=
+                Hibernate.getClass(o)) return false;
+        SanPham sanPham = (SanPham) o;
+        return getId() != null && Objects.equals(getId(),
+                sanPham.getId());
+    }
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }

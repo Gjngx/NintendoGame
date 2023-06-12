@@ -1,64 +1,55 @@
 package com.example.nintendogame.controller;
 
+import com.example.nintendogame.daos.AccountDao;
 import com.example.nintendogame.entity.User;
 import com.example.nintendogame.service.UserService;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @Controller
-public class UserController {
+@RequestMapping("/admin/taikhoan")
+public class AdminController {
+
     @Autowired
     private UserService userService;
-    @GetMapping("/login")
-    public String login(){
-        return "user/dangnhap/login";
-    }
-    @GetMapping("/register")
-    public String register(Model model){
-        model.addAttribute("user", new User());
-        return "user/dangnhap/register";
-    }
-    @PostMapping("/register")
-    public String register (@Valid @ModelAttribute("user") User user, BindingResult bindingResult, Model model){
-        if(bindingResult.hasErrors()){
-            List<FieldError> errors = bindingResult.getFieldErrors();
-            for (FieldError error : errors){
-                model.addAttribute(error.getField() + "_error", error.getDefaultMessage());
-            }
-            return "user/dangnhap/register";
-        }
-        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
-        userService.save(user);
-        return "redirect:/login";
-    }
-
-    @GetMapping("/info")
+    @GetMapping("/thongtin")
     public String dashboard(Model model, Authentication authentication) {
         String username = authentication.getName();
         // Sử dụng username để lấy thông tin người dùng từ cơ sở dữ liệu
-        User user = userService.findByUsername(username);
+        var user = userService.findByUsername(username);
 
         model.addAttribute("user", user);
-        return "user/hoso/info";
+        return "admin/taikhoan/thongtin";
+    }
+    @PostMapping("/doithongtin")
+    public String updateUser(Model model, Authentication authentication) {
+        // Lấy thông tin người dùng hiện tại
+        var username = authentication.getName();
+        var user = userService.findByUsername(username);
+        model.addAttribute("user", user);
+        // Gọi service để cập nhật thông tin người dùng
+        user.setUsername(user.getUsername());
+        user.setEmail(user.getEmail());
+        user.setName(user.getName());
+        user.setGioitinh(user.getGioitinh());
+        user.setDiachi(user.getDiachi());
+        userService.updateUser(user);
+
+        // Chuyển hướng về trang thành công
+        return "redirect:/success";
     }
     @GetMapping("/doimatkhau")
     public String showChangePasswordForm(Model model, Authentication authentication) {
-        String username = authentication.getName();
+        var username = authentication.getName();
         // Sử dụng username để lấy thông tin người dùng từ cơ sở dữ liệu
-        User user = userService.findByUsername(username);
+        var user = userService.findByUsername(username);
 
         model.addAttribute("user", user);
-        return "user/hoso/doimatkhau";
+        return "admin/taikhoan/doimatkhau";
 
     }
     @PostMapping("/doimatkhau")
@@ -88,5 +79,4 @@ public class UserController {
 
         return "redirect:/login";
     }
-
 }

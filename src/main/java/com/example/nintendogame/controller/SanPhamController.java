@@ -1,10 +1,13 @@
 package com.example.nintendogame.controller;
 
+import com.example.nintendogame.daos.Item;
 import com.example.nintendogame.entity.SanPham;
 import com.example.nintendogame.reponsitory.NhaSanXuatRepository;
 import com.example.nintendogame.reponsitory.TheLoaiRepository;
+import com.example.nintendogame.service.CartService;
 import com.example.nintendogame.service.NhaSanXuatService;
 import com.example.nintendogame.service.SanPhamService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -26,6 +29,8 @@ public class SanPhamController {
     private NhaSanXuatService nhaSanXuatService;
     @Autowired
     private NhaSanXuatRepository nhaSanXuatReponsity;
+    @Autowired
+    private CartService cartService;
     @GetMapping("/updatedesc")
     public String getSortedAndPagedSanPhams(
             @RequestParam(defaultValue = "0") int page,
@@ -60,5 +65,17 @@ public class SanPhamController {
         List<SanPham> sanPhams = sanPhamService.searchSanPhamsByName(name);
         model.addAttribute("sanPhams", sanPhams);
         return "user/sanpham/search";
+    }
+    @PostMapping("/add-to-cart")
+    public String addToCart(HttpSession session,
+                            @RequestParam long id,
+                            @RequestParam String name,
+                            @RequestParam double price,
+                            @RequestParam(defaultValue = "1") int quantity)
+    {
+        var cart = cartService.getCart(session);
+        cart.addItems(new Item(id, name, price, quantity));
+        cartService.updateCart(session, cart);
+        return "redirect:/sanpham/updatedesc";
     }
 }
