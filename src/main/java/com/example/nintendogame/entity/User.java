@@ -61,9 +61,4 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<HoaDon> hoaDons;
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<GioHang> gioHangs;
 }
