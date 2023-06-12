@@ -47,7 +47,6 @@ public class UserController {
         return "redirect:/login";
     }
 
-<<<<<<< HEAD
     @GetMapping("/info")
     public String dashboard(Model model, Authentication authentication) {
         String username = authentication.getName();
@@ -55,7 +54,7 @@ public class UserController {
         User user = userService.findByUsername(username);
 
         model.addAttribute("user", user);
-        return "user/hoso/info";
+        return "user/taikhoan/thongtin";
     }
     @GetMapping("/doimatkhau")
     public String showChangePasswordForm(Model model, Authentication authentication) {
@@ -64,7 +63,7 @@ public class UserController {
         User user = userService.findByUsername(username);
 
         model.addAttribute("user", user);
-        return "user/hoso/doimatkhau";
+        return "user/taikhoan/doimatkhau";
 
     }
     @PostMapping("/doimatkhau")
@@ -79,22 +78,31 @@ public class UserController {
             // Xử lý lỗi: Mật khẩu mới không khớp
             return "redirect:/login";
         }
-
         // Kiểm tra tính hợp lệ của mật khẩu hiện tại
         if (!userService.isValidPassword(username, currentPassword)) {
             // Xử lý lỗi: Mật khẩu hiện tại không đúng
             return "redirect:/login";
         }
-
         // Thực hiện thay đổi mật khẩu
         userService.changePassword(username, newPassword);
-
         // Đăng xuất người dùng sau khi thay đổi mật khẩu thành công
         SecurityContextHolder.getContext().setAuthentication(null);
-
         return "redirect:/login";
     }
-
-=======
->>>>>>> ea069ed2f42ad41758d324c8f3635b969e9cd094
+    @PostMapping("/doithongtin")
+    public String updateUser(Model model, Authentication authentication) {
+        // Lấy thông tin người dùng hiện tại
+        var username = authentication.getName();
+        var user = userService.findByUsername(username);
+        model.addAttribute("user", user);
+        // Gọi service để cập nhật thông tin người dùng
+        user.setUsername(user.getUsername());
+        user.setEmail(user.getEmail());
+        user.setName(user.getName());
+        user.setGioitinh(user.getGioitinh());
+        user.setDiachi(user.getDiachi());
+        userService.updateUser(user);
+        // Chuyển hướng về trang thành công
+        return "redirect:/success";
+    }
 }

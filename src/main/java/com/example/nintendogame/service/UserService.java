@@ -21,7 +21,6 @@ public class UserService {
     @Autowired
     private RoleRepository roleRepository;
 
-<<<<<<< HEAD
     public UserService(IUserRepository userRepository) {
         this.userRepository = userRepository;
     }
@@ -51,13 +50,12 @@ public class UserService {
     private PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-=======
+
     public User getUserById(Long id){
         Optional<User> optional = userRepository.findById(id);
         return optional.orElse(null);
     }
 
->>>>>>> ea069ed2f42ad41758d324c8f3635b969e9cd094
     public Page<User> getAllAndPaged(Pageable pageable) {
         return userRepository.findAll(pageable);
     }
