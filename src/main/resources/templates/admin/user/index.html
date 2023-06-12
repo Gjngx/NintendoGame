@@ -76,7 +76,7 @@
             <li th:unless="${users.number == 0}">
             </li>
             <li th:each="i : ${#numbers.sequence(0, users.totalPages - 1)}"
-                th:class="${currentPage == i} ? 'active' : ''">
+                class="page-item" th:classappend="${currentPage == i} ?'active'">
               <a class="page-link" th:href="@{/admin/users(page=${i})}" th:text="${i + 1}"></a>
             </li>
             <li th:if="${currentPage < users.totalPages - 1}">

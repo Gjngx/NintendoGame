@@ -1,7 +1,6 @@
 package com.example.nintendogame.controller;
 
 import com.example.nintendogame.entity.Role;
-import com.example.nintendogame.entity.SanPham;
 import com.example.nintendogame.entity.User;
 import com.example.nintendogame.reponsitory.IUserRepository;
 import com.example.nintendogame.reponsitory.RoleRepository;
@@ -13,7 +12,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -63,9 +61,9 @@ public class UserAdminController {
         }
         return "redirect:/admin/users";
     }
-    @GetMapping("/{userId}/removeRole")
-    public String removeRole(@PathVariable Long userId, @RequestParam("roleId") Long roleId) {
-        Optional<User> optionalUser = iUserRepository.findById(userId);
+    @GetMapping("/{id}/removeRole")
+    public String removeRole(@PathVariable("id") Long id, @RequestParam("roleId") Long roleId) {
+        Optional<User> optionalUser = iUserRepository.findById(id);
         Optional<Role> optionalRole = roleRepository.findById(roleId);
         if (optionalUser.isPresent() && optionalRole.isPresent()) {
             User user = optionalUser.get();

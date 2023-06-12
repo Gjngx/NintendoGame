@@ -29,7 +29,7 @@ public class SanPhamController {
     @GetMapping("/updatedesc")
     public String getSortedAndPagedSanPhams(
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "2") int size,
+            @RequestParam(defaultValue = "18") int size,
             Model model) {
         Pageable pageable = PageRequest.of(page, size);
         model.addAttribute("theLoais", theLoaiRepository.findAll());

@@ -38,14 +38,14 @@
 
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">Thêm nhà sản xuất</h1>
+                    <h1 class="h3 mb-0 text-gray-800">Thêm thể loại</h1>
                 </div>
                 <!-- Content Row -->
 
                 <div class="row flex-column">
                     <form th:action="@{/admin/theloais/add}" th:object="${theLoai}" method="post">
                         <div class="col-6 mb-3">
-                            <label class="form-label" for="theloai">Tên nhà sản xuất:</label>
+                            <label class="form-label" for="theloai">Tên thể loại:</label>
                             <input class="form-control" type="text" th:field="*{theloai}" id="theloai">
                         </div>
                         <input style="margin-left: 10px;" type="submit" class="btn btn-success" value="Save">
