@@ -7,8 +7,7 @@
   <title>Nintendo Shop</title>
   <link rel="shortcut icon" href="/img/dragon.svg" type="image/svg" style="color:red"/>
   <th:block th:replace="~{layout :: link-css}"></th:block>
-</head>
-<body style="background: #f6f7fc;">
+<body>
 <div th:replace="~{layout :: spinner}"></div>
 <nav th:replace="~{layout :: header}"></nav>
 <div class="container py-5 h-100">
@@ -16,7 +15,8 @@
     <div class="col-12 col-lg-6 col-md-8 col-xl-5">
       <div class="card shadow" style="border-radius: 1rem;">
         <div class="card-body p-5">
-          <h3>Thay đổi thông tin tài khoản</h3>
+          <h3 style="text-align:center">Thay đổi thông tin tài khoản</h3>
+          <br>
           <form th:action="@{/doithongtin}" th:object="${user}" method="post">
             <div class="row">
               <div class="mb-3 col">
