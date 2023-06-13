@@ -76,6 +76,6 @@ public class SanPhamController {
         var cart = cartService.getCart(session);
         cart.addItems(new Item(id, name, price, quantity));
         cartService.updateCart(session, cart);
-        return "redirect:/sanpham/updatedesc";
+        return "redirect:/cart";
     }
 }

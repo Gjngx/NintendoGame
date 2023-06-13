@@ -89,20 +89,29 @@ public class UserController {
         SecurityContextHolder.getContext().setAuthentication(null);
         return "redirect:/login";
     }
+    @GetMapping("/doithongtin")
+    public String showupdateUser(Model model, Authentication authentication) {
+        String username = authentication.getName();
+        // Sử dụng username để lấy thông tin người dùng từ cơ sở dữ liệu
+        User user = userService.findByUsername(username);
+
+        model.addAttribute("user", user);
+        return "user/taikhoan/doithongtin";
+
+    }
     @PostMapping("/doithongtin")
-    public String updateUser(Model model, Authentication authentication) {
+    public String updateUser(@ModelAttribute("user") User updateuser, Authentication authentication) {
         // Lấy thông tin người dùng hiện tại
         var username = authentication.getName();
-        var user = userService.findByUsername(username);
-        model.addAttribute("user", user);
+        User user = userService.findByUsername(username);
         // Gọi service để cập nhật thông tin người dùng
-        user.setUsername(user.getUsername());
-        user.setEmail(user.getEmail());
-        user.setName(user.getName());
-        user.setGioitinh(user.getGioitinh());
-        user.setDiachi(user.getDiachi());
+        user.setUsername(updateuser.getUsername());
+        user.setEmail(updateuser.getEmail());
+        user.setName(updateuser.getName());
+        user.setGioitinh(updateuser.getGioitinh());
+        user.setDiachi(updateuser.getDiachi());
         userService.updateUser(user);
         // Chuyển hướng về trang thành công
-        return "redirect:/success";
+        return "user/taikhoan/thongtin";
     }
 }
