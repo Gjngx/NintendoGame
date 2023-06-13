@@ -52,7 +52,6 @@ public class UserController {
         String username = authentication.getName();
         // Sử dụng username để lấy thông tin người dùng từ cơ sở dữ liệu
         User user = userService.findByUsername(username);
-
         model.addAttribute("user", user);
         return "user/taikhoan/thongtin";
     }
@@ -61,7 +60,6 @@ public class UserController {
         String username = authentication.getName();
         // Sử dụng username để lấy thông tin người dùng từ cơ sở dữ liệu
         User user = userService.findByUsername(username);
-
         model.addAttribute("user", user);
         return "user/taikhoan/doimatkhau";
 
@@ -72,7 +70,6 @@ public class UserController {
                                  @RequestParam("confirmPassword") String confirmPassword,
                                  Authentication authentication) {
         String username = authentication.getName();
-
         // Kiểm tra tính hợp lệ của mật khẩu mới
         if (!newPassword.equals(confirmPassword)) {
             // Xử lý lỗi: Mật khẩu mới không khớp
@@ -89,20 +86,25 @@ public class UserController {
         SecurityContextHolder.getContext().setAuthentication(null);
         return "redirect:/login";
     }
-    @PostMapping("/doithongtin")
-    public String updateUser(Model model, Authentication authentication) {
-        // Lấy thông tin người dùng hiện tại
-        var username = authentication.getName();
-        var user = userService.findByUsername(username);
+    @GetMapping("/doithongtin")
+    public String thongTinTaiKhoanForm(Model model, Authentication authentication) {
+        String username = authentication.getName();
+        User user = userService.findByUsername(username);
         model.addAttribute("user", user);
-        // Gọi service để cập nhật thông tin người dùng
-        user.setUsername(user.getUsername());
-        user.setEmail(user.getEmail());
-        user.setName(user.getName());
-        user.setGioitinh(user.getGioitinh());
-        user.setDiachi(user.getDiachi());
+        return "user/taikhoan/doithongtin";
+    }
+    @PostMapping("/doithongtin")
+    public String thongTinTaiKhoan(Model model, Authentication authentication, User updateUser) {
+        String username = authentication.getName();
+        User user = userService.findByUsername(username);
+        model.addAttribute("user", updateUser);
+        user.setEmail(updateUser.getEmail());
+        user.setName(updateUser.getName());
+        user.setGioitinh(updateUser.getGioitinh());
+        user.setSdt(updateUser.getSdt());
+        user.setDiachi(updateUser.getDiachi());
+        user.setNgaysinh(updateUser.getNgaysinh());
         userService.updateUser(user);
-        // Chuyển hướng về trang thành công
-        return "redirect:/success";
+        return "redirect:/info";
     }
 }

@@ -35,7 +35,6 @@ public class UserService {
         }
         return false;
     }
-    @Transactional
     public void updateUser(User user) {
         userRepository.save(user);
     }

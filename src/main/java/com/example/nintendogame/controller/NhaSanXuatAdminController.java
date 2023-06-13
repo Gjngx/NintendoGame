@@ -33,14 +33,12 @@ public class NhaSanXuatAdminController {
         model.addAttribute("currentPage", page);
         return "admin/nhasanxuat/index";
     }
-
     @GetMapping("/search")
     public String searchNhaSanXuat(@RequestParam("name") String name, Model model) {
         List<NhaSanXuat> nhaSanXuats = nhaSanXuatService.searchNhaSanXuatsByName(name);
         model.addAttribute("nhasanxuats", nhaSanXuats);
         return "admin/nhasanxuat/search";
     }
-
     @GetMapping("/add")
     public String addNhasanxuat(Model model){
         model.addAttribute("nhasanxuat", new NhaSanXuat());
