@@ -42,14 +42,16 @@
       <a href="/admin" class="nav-item nav-link" sec:authorize="hasAnyAuthority('ADMIN')">Quản lý</a>
       <a href="/admin" class="nav-item nav-link" sec:authorize="hasAnyAuthority('STAFF')">Quản lý</a>
       <a href="/cart" class="nav-item nav-link"><i class="fa-sharp fa-solid fa-cart-shopping"></i> Giỏ hàng</a>
-      <div class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Tài khoản</a>
-        <div class="dropdown-menu fade-up m-0">
-          <a href="/info" class="dropdown-item">Thông tin tài khoản</a>
-          <a href="/doithongtin" class="dropdown-item">Thay đổi thông tin</a>
-          <a href="/doimatkhau" class="dropdown-item">Đổi mật khẩu</a>
+      <li sec:authorize="isAuthenticated()">
+        <div class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Tài khoản</a>
+          <div class="dropdown-menu fade-up m-0">
+            <a href="/info" class="dropdown-item">Thông tin tài khoản</a>
+            <a href="/doithongtin" class="dropdown-item">Thay đổi thông tin</a>
+            <a href="/doimatkhau" class="dropdown-item">Đổi mật khẩu</a>
+          </div>
         </div>
-      </div>
+      </li>
     </div>
 
     <li sec:authorize="isAuthenticated()">

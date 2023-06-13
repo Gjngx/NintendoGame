@@ -47,7 +47,10 @@ public class SecurityConfig {
                         .hasAnyAuthority("ADMIN", "USER", "STAFF")
                         .requestMatchers("/api/**")
                         .hasAnyAuthority("ADMIN", "USER", "STAFF")
-                        .anyRequest().authenticated()
+                        .requestMatchers( "/sanpham/add-to-cart")
+                        .authenticated()
+                        .anyRequest().permitAll()
+
                 )
                 .logout(logout -> logout.logoutUrl("/logout")
                         .logoutSuccessUrl("/login")
